@@ -5,6 +5,7 @@
   Author: DQM team
   Purpose: MoistureFactor from Dry_Weight_Prep when DF > 0
   Date: 2025-01-30
+  Date: 2026-03-24
 */
 // Variable declaration - modify the parameters below with the source (where the data comes from) and destination (where the data goes to)
 String ParamID = ${#;#;#;paramid}.toString();	    // define the parameter for the calculation
