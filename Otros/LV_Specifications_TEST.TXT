@@ -1,0 +1,4 @@
+{|<table width="100%" height="100%" border=0><tr><td valign=middle><b>[paramid] ([paramtype])</b></td></tr></table>|}
+
+{|<table width="100%" height="100%" border=0><tr><td valign=middle><b>[paramdesc] ([paramtype])</b></td></tr></table>|}
+

@@ -1,0 +1,14 @@
+def result=0;
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'NIOSH1501_A', '*', '*', 'max', '108-88-3','Final Value', 'max');
+def nRL=SGS.getLimitResults('labvantage',sdidataitem, 'RL', 'NIOSH1501_A','*', '*','max', '108-88-3', 'Final Value', 'max', true)[0].value1num;
+if (${108-88-3;WB}>=nRL && ${108-88-3;WB}>${108-88-3;WF}/10)
+{  
+result="Possible loss sample"  
+}  
+else if (${108-88-3;WB}>=nRL)  
+{  
+result=${108-88-3;WF}+${108-88-3;WB}
+}  
+else  
+{result=${108-88-3;WF}
+}

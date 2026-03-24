@@ -1,0 +1,60 @@
+/* TM=EPA8260_S */
+/* PL=EPA8260_S */
+/* Parameter=TCH */
+
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8260_S','*',${variantid}, ""+${dataset}, 'TCH','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;74-83-9;71-43-2;74-95-3;79-01-6;108-88-3;106-93-4;100-41-4;179601-23-1;75-25-2;100-42-5;95-47-6;98-82-8;108-86-1;103-65-1;108-67-8;98-06-6;95-63-6;135-98-8;99-87-6;104-51-8;91-20-3;1634-04-4;TotalChloroBenzene;TotalXylene;BTEX;TCH;3114-55-4;363-72-4;3855-82-1;SpikeVolume;FinalVolume');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def Sum1=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(Sum1.length>0)
+	{
+		bResult=true;
+		result=result+Sum1[0];
+	}
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+
+--	AND pli.paramid NOT in ('107-05-1','100-44-7','505-60-2','74-97-5','75-27-4','108-90-7','75-00-3','107-07-3','110-75-8','67-66-3','74-87-3','96-12-8','1476-11-5','110-57-6','75-34-3','107-06-2','78-87-5','96-23-1','10061-01-5','10061-02-6','106-89-8','67-72-1','75-09-2','76-01-7','630-20-6','79-34-5','71-55-6','79-00-5','79-01-6','96-18-4','75-01-4')
+
+/*
+	TCH = Summation of Chlorinated Hydrocarbons (from full list of EPA8260) – If parameter is not found in the Parameter List, it’s not part of our analysis and we don’t have standard.
+*/
+Allyl chloride				107-05-1
+Benzyl chloride				100-44-7
+Bis(2-chloroethyl)sulfide	505-60-2
+Bromochloromethane			74-97-5
+Bromodichloromethane		75-27-4
+Chlorobenzene				108-90-7
+Chloroethane				75-00-3
+2-Chloroethanol				107-07-3
+2-Chloroethyl vinyl ether	110-75-8
+Chloroform					67-66-3
+Chloromethane				74-87-3
+1,2-Dibromo-3-chloropropane	96-12-8
+cis-1,4-Dichloro-2-butene	1476-11-5
+trans-1,4-Dichloro-2-butene	110-57-6
+1,1-Dichloroethane			75-34-3
+1,2-Dichloroethane			107-06-2
+1,2-Dichloropropane			78-87-5
+1,3-Dichloro-2-propanol		96-23-1
+cis-1,3-Dichloropropene		10061-01-5
+trans-1,3-Dichloropropene	10061-02-6
+Epichlorohydrin				106-89-8
+Hexachloroethane			67-72-1
+Methylene chloride			75-09-2
+Pentachloroethane			76-01-7
+1,1,1,2-Tetrachloroethane	630-20-6
+1,1,2,2-Tetrachloroethane	79-34-5
+1,1,1-Trichloroethane		71-55-6
+1,1,2-Trichloroethane		79-00-5
+Trichloroethene				79-01-6
+1,2,3-Trichloropropane		96-18-4
+Vinyl chloride				75-01-4
+

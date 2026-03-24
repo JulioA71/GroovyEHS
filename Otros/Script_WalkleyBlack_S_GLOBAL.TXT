@@ -1,0 +1,29 @@
+/* TM=WalkleyBlack_S */
+/* PL=WalkleyBlack_S */
+/* Parameter=MoistureFactor */
+/* [Dry_Weight_Prep;*;*;max|MoistureFactor;Final Value;max] */
+switch(${primary:qcsampletype})
+{
+case 'Unknown': 
+   def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'MoistureFactor','Final Value', 'max') 
+/*Dry_Weight_Prep;*;*;#|MoistureFactor;Final Value;max*/
+   def moisturefactor=SGS.getNumericResults('labvantage',sdidataitem, 'Dry_Weight_Prep','*','*', 'max', 'MoistureFactor', 'Final Value', 'max', false)
+	if( moisturefactor.length>0)
+   		return moisturefactor[0]
+	else
+		return 99
+break;
+case ['Dup','MB']: 
+	def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'MoistureFactor','Final Value', 'max') 
+/*Dry_Weight_Prep;*;*;#|MoistureFactor;Final Value;max*/
+	def unknownsamples=SGS.getUnknownSampleLink(sdidataitem)
+	def moisturefactor=SGS.sampleNumericResults('labvantage',sdidataitem,unknownsamples[0], 'Dry_Weight_Prep','*','*', 'max', 'MoistureFactor', 'Final Value', 'max')
+	if( moisturefactor.length>0)
+		return moisturefactor[0]
+	else
+		return 77
+break;
+default:
+return 88
+break;
+}

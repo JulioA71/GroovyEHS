@@ -1,0 +1,179 @@
+Main
+
+{|javascript:sapphire.lookup.sdi.open('pr0_projectid','Project','','N','','','','','primary','0','projectid','rc?command=page&page=ProjectLookup&queryid=ProjectByOrganization&param1='+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'&restrictivewhere=u_addressid is null or u_addressid=\''+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'\'','keycolid1',true,oLUPD_pr_projectid)|}
+{|javascript:sapphire.lookup.sdi.open('pr0_projectid','Project','','N','','','','','primary','0','projectid','rc?command=page&page=ProjectLookup&queryid=ProjectByOrganization&param1='+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'&restrictivewhere=u_addressid is null or u_addressid=\''+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'\'','keycolid1',true,oLUPD_pr_projectid)|}
+
+{|javascript:sapphire.lookup.sdi.open('pr0_projectid','Project','','N','','','','','primary','0','projectid','rc?command=page&page=ProjectLookup&lookupcallback=projectLookupCallback&queryid=ProjectByOrganization&param1='+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'&restrictivewhere=u_addressid is null or u_addressid=\''+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'\'','keycolid1',true,oLUPD_pr_projectid)|}
+
+
+{|javascript:sapphire.lookup.sdi.open('pr0_projectid','Project','','N','','','','','primary','0','projectid','rc?command=page&page=ProjectLookup&queryid=ProjectByOrganization&param1='+sapphire.page.advancedtoolbar.getFieldValue('inv_payeraddressid')+'&restrictivewhere=u_addressid is null or u_addressid=\''+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'\'','keycolid1',true,oLUPD_pr_projectid)|}
+
+{|javascript:sapphire.lookup.sdi.open('pr0_projectid','Project','','N','','','','','primary','0','projectid','rc?command=page&page=ProjectLookup&queryid=ProjectByOrganization&param1='+sapphire.page.list.getFieldValue('keycolid1')+'&restrictivewhere=u_addressid is null or u_addressid=\''+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'\'','keycolid1',true,oLUPD_pr_projectid)|}
+
+rc?command=page&page=ProjectLookup&queryid=ProjectByOrganization&param1='+sapphire.page.list.getFieldValue('keycolid1')
+
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=sapphire.page.maint.getFieldValue('keycolid1')
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=sapphire.page.maint.getFieldValue('s_sampleid')
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[fieldid:s_sampleid]
+
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[fieldid:s_sampleid]
+
+
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[fieldid:s_sampleid]
+
+SDC=Sample
+{|rc?command=page&page=HZM_SDSView&sdcid=HZM_SDS&keyid1=[hzm_sdsid]&mode=View|}
+
+Column=|(select r.schedulerulelabel FROM scheduletimerule r, scheduleplanitem pi where r.scheduleplanid=pi.scheduleplanid and r.scheduletimeruleid=pi.scheduletimeruleid and pi.scheduleplanid=sdiworkitem.scheduleplanid and pi.scheduleplanitemid=sdiworkitem.scheduleplanitemid) timerule|}
+
+{|openViewCalcParamLimit(sapphire.page.request.data.get('keyid1'))|}
+
+
+def SampleID = ${primary:s_sampleid};
+def bResult = true;
+return (!bResult?'':SampleID )
+
+
+
+[SampleVolume;Final Value]
+
+
+SDC to use for a custom Lookup page.
+If you have specified a Lookup Page, this is ignored.
+If you have not specified a Lookup Page, the SDC is obtained from the HRef attributes
+
+
+
+{|<a href="#" onclick = "javascript:sapphire.lookup.util.openWindow('LookupPage', 'SAPPHIRE', 'rc?command=page&page=SampleAuditViewCustom&sdcid=Sample&keyid1=[keyid1]&paramlistid=[paramlistid]&paramlistversionid=[paramlistversionid]&variantid=[variantid]&dataset=[dataset]&tableid=sdidata',900,700,'',null,false)">Open Details</a>|}
+
+
+{|(select sd.sourceworkitemid from sdidata sd where sd.sdidataid=sdidata.sdidataid) sourceworkitemid|}
+s_sample.s_sampleid
+
+rc?command=page&page=PrepLookupJA
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[fieldid:keycolid1] |keycolid1
+
+=Href:
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=S-PELIM1000047
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[fieldid:sdi.keyid1]
+rc?command=page&page=ProjectLookup&queryid=ProjectByOrganization&param1='+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'&restrictivewhere=u_addressid is null or u_addressid=\''+sapphire.page.maint.getFieldValue('inv_payeraddressid')+'\'','keycolid1',true,oLUPD_pr_projectid)|}
+rc?command=page&page=ProjectLookup&queryid=ProjectByOrganization&param1='+sapphire.page.maint.getFieldValue('inv_payeraddressid')
+{|openViewCalcParamLimit(sapphire.page.request.data.get('keyid1'))|}
+
+***** SETUP OK *****
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.request.data.get('keyid1')]
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.request.getParameter('keyid1')]
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.request.data.keyid1]
+
+
+***** Tests ****
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.lookup.sdi('s_sampleid')]
+
+{|rc?command=page&page=SampleView&keyid1=[keyid1]&sdcid=Sample|}
+
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.request.data.maint.columns[0].id
+
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.maint.getFieldValue('s_sampleid')]
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.maint.getFieldValue('s_sampleid')]
+
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.getKeyId1]
+
+sapphire.page.request.data.maint.columns[0].id
+
+sapphire.page.maint.getFieldValue('inv_payeraddressid')
+
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:viewSampleDetails('keyid1')]
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.maint.getFieldValue('s_sampleid')]
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.SampleView.data.get('keyid1')]
+rc?command=page&page=PrepLookupJA&queryid=PrepLookupJA&param1=[javascript:sapphire.page.SampleView.maint.getFieldValue('s_sampleid')]
+
+{|<iframe id="attribute_frame" name="attribute_frame" frameborder="0" style="width:400px;height:150px
+" src="rc?command=file&file=WEB-CORE/pagetypes/attribute/dataentryattribute.jsp&sdcid
+=Sample&keyid1=[s_sampleid]&mode=readonly"></iframe>|}
+
+{|<iframe id="attribute_frame" name="attribute_frame" frameborder="0" style="width:875px;height:150px
+" src="rc?command=file&file=WEB-CORE/pagetypes/attribute/dataentryattribute.jsp&sdidataid
+=[sdidataid]&sdcid=[sdcid]&keyid1=[keyid1]&keyid2=[keyid2]&keyid3=[keyid3]&paramlistid=[paramlistid]&paramlistversionid=[paramlistversionid]&variantid=[variantid]&dataset=[dataset]"></iframe>|}
+
+{|<iframe id="attachment_frame" name="attachment_frame" frameborder="0" style="width:875px;height:150px
+" src="rc?command=file&file=WEB-CORE/pagetypes/attachment/dataentryattachment.jsp&sdidataitemid
+=[sdidataitemid]&sdcid=[sdcid]&keyid1=[keyid1]&keyid2=[keyid2]&keyid3=[keyid3]&paramlistid=[paramlistid]&paramlistversionid=[paramlistversionid]&variantid=[variantid]&dataset=[dataset]&paramid=[paramid]&paramtype=[paramtype]&replicateid=[replicateid]"></iframe>|}
+
+{|(select sd.sourceworkitemid from sdidata sd where sd.sdidataid=sdidata.sdidataid) sourceworkitemid|}
+
+
+
+***** URL *****
+{|rc?command=page&page=gDEGridSDIDsXParam|}
+{|rc?command=page&page=AttachmentEmbeddedSOPView&sdcid=ParamList&keyid1=[paramlistid]&keyid2=[paramlistversionid]&keyid3=[variantid]|}
+{|rc?command=page&page=SDIQualifierList&queryid=SDIQualifierForDE&param1=[sdidataitemid]|}
+
+
+***** HREF *****
+{|rc?command=page&page=SampleView&keyid1=[keyid1]&sdcid=Sample|}
+{|rc?command=page&page=[sdcid]View&keyid1=[columnid]&sdcid=[sdcid]&mode=View|}
+{|rc?command=page&page=SampleView&keyid1=[columnid=s_sampleid]&sdcid=Sample&mode=View|}
+{|rc?command=page&page=SampleTypeView&mode=View&sdcid=SampleType&keyid1=[columnid]|}
+{|rc?command=page&page=CertInstrumentLookup&param1=[paramlistid]&param2=[paramlistversionid]&param3=[variantid]|}
+{|rc?command=page&page=HZM_SDSView&sdcid=HZM_SDS&keyid1=[hzm_sdsid]&mode=View|}
+{|rc?command=page&page=LocationLookup|}
+{|rc?command=page&page=INV_InvoiceItemView&sdcid=INV_InvoiceItem&mode=View&queryid=INV_InvoiceItemQueryKeyId&param1=Sample&param2=[s_sampleid]|}
+{|rc?command=page&page=ProductLookupFromSmp&queryid=ProductsByType&param1=[sampletypeid]|}
+
+
+***** JavaScript *****
+{|javascript:viewSampleDetails('[param=keyid1]','[columnid=paramlistid]','[columnid=paramlistversionid]','[columnid=variantid]','[columnid=dataset]','','rc?command=page&page=DataEntryByDataSet&defaultview=gDEGridParamXSDI&queryid=DataEntryBySdiDataId&param1=[sdidataid]&ViewOnly=Y')|}
+{|javascript:viewSampleDetails('[param=keyid1]','rc?command=page&page=SampleDataDetailView')|}
+sapphire.ui.dialog.open( 'Report Event', 'rc?command=page&page=LV_ReportEventList_SGS&queryid=ReportSDIbyCategory&param1='+rightframe.getSelectedPrimary(), true, 750, 550, null )
+='+sapphire.page.maint.getFieldValue('inv_payeraddressid') +'&restrictivewhere=u_addressid is null or u_addressid=\''+sapphire.page.maint.getFieldValue('inv_payeraddressid') +'\'','keycolid1',true,oLUPD_pr_projectid)|}
+{|openViewCalcParamLimit(sapphire.page.request.data.get('keyid1'))|}
+{|javascript:sapphire.ui.dialog.open( 'View Specs', 'rc?command=page&page=LV_ViewSampleSpec&sdcid=[sdcid]&keyid1=[keycolid1]&oosonly=Y', true, 850, 660, {'Close': 'this.frame.winclose();'}, null   )|}
+
+{|openViewCalcParamLimit(sapphire.page.request.data.get('keyid1'))|}
+sapphire.ui.dialog.open( 'Report Event', 'rc?command=page&page=LV_ReportEventList_SGS&queryid=ReportSDIbyCategory&param1='+rightframe.getSelectedPrimary(), true, 750, 550, null )
+
+
+***** SQL Query *****
+{|(select s.samplestatus from s_sample s where s.s_sampleid = s_sample.s_sampleid) samplestatus|}
+
+{|SELECT r.keyid1, r.keyid2, r.keyid3,c.changelogstatus,c.checkedoutbyuserid
+, (CASE WHEN c.checkedoutbydepartmentid IS NOT NULL THEN c.checkedoutbydepartmentid ELSE c.checkedoutbyuserid END) checkedoutto
+,(
+CASE
+WHEN c.checkedoutbydepartmentid IS NOT NULL AND c.checkedoutbydepartmentid IN (SELECT departmentid FROM departmentsysuser WHERE sysuserid = '[currentuser]') THEN '3'
+WHEN c.checkedoutbydepartmentid IS NOT NULL AND c.checkedoutbydepartmentid NOT IN (SELECT departmentid FROM departmentsysuser WHERE sysuserid = '[currentuser]') THEN '4'
+WHEN c.checkedoutbyuserid IS NOT NULL AND c.checkedoutbyuserid = '[currentuser]' THEN '1'
+WHEN c.checkedoutbyuserid IS NOT NULL AND c.checkedoutbyuserid != '[currentuser]' THEN '2'
+ELSE ''
+END) checkinallowed
+FROM rsetitems r, changelog c WHERE r.rsetid = '[rsetid]' AND c.changelogstatus = 'Checked Out' 
+AND r.sdcid = c.linksdcid AND r.keyid1 = c.linkkeyid1 AND r.keyid2 = c.linkkeyid2 AND r.keyid3 = c.linkkeyid3|}
+
+{|(select s.samplestatus from s_sample s where s.s_sampleid = s_sample.s_sampleid) samplestatus|}
+
+{|(select count(*) from trackitem t where t.linksdcid='Sample' and t.linkkeyid1 = s_sample.s_sampleid) nb_of_tis|}
+
+{|select s_samplepointid keyid1,{{MSS:dbo.}}LV_Query{{ORA:.MSS:_}}GetLocPathLabel(locationid,' / ',null) locationpathlabel 
+from s_samplepoint where s_samplepointid in ([keyid1list])|}
+
+
+***** Data Item Display Rule *****
+sdidataitem.paramtype.startsWith("Adjusted") ? "exclude" : sdidata.availability...
+Max Data Item Limit	
+{|10000|}
+
+{|(select r.inv_payeraddressid from s_request r where r.s_requestid=s_sample.requestid) requestid_inv_payeraddressid|}
+
+
+
+***** Mode *****
+( pagedata.keyid1 == '' || primary.keyid1 == '' || pagedata.newAddMode
+
+
+***** Pseudocolumn *****
+{|<iframe id="attribute_frame" name="attribute_frame" frameborder="0" style="width:875px;height:150px" src="rc?command=file&file=WEB-CORE/pagetypes/attribute/dataentryattribute.jsp&sdidataid=[sdidataid]&sdcid=[sdcid]&keyid1=[keyid1]&keyid2=[keyid2]&keyid3=[keyid3]&paramlistid=[paramlistid]&paramlistversionid=[paramlistversionid]&variantid=[variantid]&dataset=[dataset]"></iframe>|}
+
+
+***** Columns *****
+{|(select sd.sourceworkitemid from sdidata sd where sd.sdidataid=sdidata.sdidataid) sourceworkitemid|}
+

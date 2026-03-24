@@ -1,0 +1,101 @@
+/* TM=HACH_BART_W
+/* PL=HACH_BART_W */
+/* Parameter=SRB_Population */
+
+switch(${InspectionDay;Final Value})
+{
+case '1': 
+     return 2200000
+break;
+case '2': 
+     return 500000
+break;
+case '3': 
+     return 115000
+break;
+case '4': 
+     return 27000
+break;
+case '5': 
+     return 6000
+break;
+case '6': 
+     return 1400
+break;
+case '7': 
+     return 325
+break;
+case '8': 
+     return 75
+break;
+case '9': 
+     return 20
+break;
+case '10': 
+     return 5
+break;
+case '11': 
+     return 0
+break;
+default:
+return 99
+break;
+}
+
+
+
+/* TM=HACH_BART_S
+/* PL=HACH_BART_S */
+/* Parameter=SRB_Population */
+
+switch(${InspectionDay;Final Value})
+{
+case '1': 
+     return 22000000
+break;
+case '2': 
+     return 5000000
+break;
+case '3': 
+     return 1150000
+break;
+case '4': 
+     return 270000
+break;
+case '5': 
+     return 60000
+break;
+case '6': 
+     return 14000
+break;
+case '7': 
+     return 3250
+break;
+case '8': 
+     return 750
+break;
+case '9': 
+     return 200
+break;
+case '10': 
+     return 50
+break;
+case '11': 
+     return 0
+break;
+default:
+return 99
+break;
+}
+
+1	22000000
+2	5000000
+3	1150000
+4	270000
+5	60000
+6	14000
+7	3250
+8	750
+9	200
+10	50
+11	<10

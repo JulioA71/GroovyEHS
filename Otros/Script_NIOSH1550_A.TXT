@@ -1,0 +1,132 @@
+/* TM=NIOSH1550_A */
+/* PL=NIOSH1550_A */
+/* Parameter=Multiplier */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Multiplier','Final Value', 'max')
+/*Max DF in the child sample*/
+/*Get Child sample Ids*/
+def childs=SGS.childSampleId('labvantage',${primary:s_sampleid},'');
+/*Get  DF values of Child sample Ids*/
+def result=SGS.sampleNumericResults('labvantage',sdidataitem,SGS.concat(childs,';'), 'NIOSH1550_A_child','*','#', 'max', 'DF', '*', 'max')
+/*Retum  max*/
+return SGS.max(result)
+
+
+
+
+/* TM=NIOSH1550_A */
+/* PL=NIOSH1550_A */
+/* Parameter=AirVolume */
+[FLOW;Final Value]*[SamplingDuration;Final Value]
+
+
+
+/* TM=NIOSH1550_A */
+/* PL=NIOSH1550_A */
+/* Parameter=wb_wf */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'wb_wf','Final Value', 'max')
+/*max value of the formula (param_absolute value in child back) / (same param_absolute value in child front) */
+/* front child sample*/
+def frontChild=SGS.childSampleId('labvantage',${primary:s_sampleid},'s.samplesubtypeid =\'Air_Front\'');
+/*back child sample*/
+def backChild=SGS.childSampleId('labvantage',${primary:s_sampleid},'s.samplesubtypeid =\'Air_Back\'');
+def max=-99999999
+/* parameters  to check */
+def paramList= new ArrayList();
+paramList.add('EPH_C10_C40');
+paramList.add('TPH_C10_C40');
+paramList.add('VPH_C5_C9');
+def newValue=false;
+for(paramid in paramList){
+	/*Get front result */
+	def frontresult=SGS.sampleNumericResults('labvantage',sdidataitem,frontChild[0], 'NIOSH1550_A_child','*','#', 'max', paramid, 'Absolute Value', 'max');
+	/*Get backresult */
+	def backresult=SGS.sampleNumericResults('labvantage',sdidataitem,backChild[0], 'NIOSH1550_A_child','*','#', 'max', paramid, 'Absolute Value', 'max');
+	if(frontresult.length>0 && backresult.length>0)
+		{
+		/*calculation*/
+		def calc=backresult[0]/frontresult[0];
+		/* first value or result superior to max value */
+		if (! newValue || calc>max )
+			max=calc;
+			newValue = true;
+		}
+}
+/* return max value */
+return max;
+
+
+
+/* TM=NIOSH1550_A */
+/* PL=NIOSH1550_A */
+/* Parameter=VPH_C5_C9 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'VPH_C5_C9','Final Value', 'max')
+/*see method formula*/
+/* front child sample*/
+def frontChild=SGS.childSampleId('labvantage',${primary:s_sampleid},'s.samplesubtypeid =\'Air_Front\'');
+/*back child sample*/
+def backChild=SGS.childSampleId('labvantage',${primary:s_sampleid},'s.samplesubtypeid =\'Air_Back\'');
+/*Get front result */
+def frontresult=SGS.sampleNumericResults('labvantage',sdidataitem,frontChild[0], 'NIOSH1550_A_child','*','#', 'max', '#', 'Absolute Value', 'max');
+/*Get back result */
+def backresult=SGS.sampleNumericResults('labvantage',sdidataitem,backChild[0], 'NIOSH1550_A_child','*','#', 'max', '#', 'Absolute Value', 'max');
+/*Get front QC*/
+def frontqc=SGS.qcSampleIdByWorkItem('labvantage',frontChild[0],'NIOSH1550_A%',''+${#;#;#;#|sourceworkiteminstance},false,'Front_Blank','');
+/*Get back QC*/
+def backqc=SGS.qcSampleIdByWorkItem('labvantage',backChild[0],'NIOSH1550_A%',''+${#;#;#;#|sourceworkiteminstance},false,'Back_Blank','');
+/*Get results front QC*/
+def frontqcresult=SGS.sampleNumericResults('labvantage',sdidataitem,SGS.concat(frontqc,';'), 'NIOSH1550_A_child','*','#', 'max', '#', 'Absolute Value', 'max');
+/*Get results backQC*/
+def backqcresult=SGS.sampleNumericResults('labvantage',sdidataitem,SGS.concat(backqc,';'), 'NIOSH1550_A_child','*','#', 'max', '#', 'Absolute Value', 'max');
+def result=-99999999;
+if(frontresult.length>0 && backresult.length>0 && frontqcresult.length>0 && backqcresult.length>0)
+{     
+	result=(frontresult[0]+backresult[0]-SGS.average(frontqcresult)-SGS.average(backqcresult))*1000 /(${FLOW;Final Value}*${SamplingDuration;Final Value})
+}
+/* return resultvalue */
+return result;
+
+
+
+
+/* TM=NIOSH1550JA_A */
+/* PL=NIOSH1550JA_A */
+/* Parameter=VPH_C5_C9 */
+switch(${primary:qcsampletype})
+{
+case 'Unknown': 
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'VPH_C5_C9','Final Value', 'max')
+  /*see method formula*/
+  /* front child sample*/
+  def frontChild=SGS.childSampleId('labvantage',${primary:s_sampleid},'s.samplesubtypeid =\'Air_Front\'')
+  /*back child sample*/
+  def backChild=SGS.childSampleId('labvantage',${primary:s_sampleid},'s.samplesubtypeid =\'Air_Back\'')
+  /*Get front result */
+  def frontresult=SGS.sampleNumericResults('labvantage',sdidataitem,frontChild[0], 'NIOSH1550JA_A_child','*','#', 'max', '#', 'Absolute Value', 'max')
+  /*Get back result */
+  def backresult=SGS.sampleNumericResults('labvantage',sdidataitem,backChild[0], 'NIOSH1550JA_A_child','*','#', 'max', '#', 'Absolute Value', 'max')
+  /*Get front QC*/
+  def frontqc=SGS.qcSampleIdByWorkItem('labvantage',frontChild[0],'NIOSH1550JA_A%',''+${#;#;#;#|sourceworkiteminstance},false,'Front_Blank','')
+  /*Get back QC*/
+  def backqc=SGS.qcSampleIdByWorkItem('labvantage',backChild[0],'NIOSH1550JA_A%',''+${#;#;#;#|sourceworkiteminstance},false,'Back_Blank','')
+  /*Get results front QC*/
+  def frontqcresult=SGS.sampleNumericResults('labvantage',sdidataitem,SGS.concat(frontqc,';'), 'NIOSH1550JA_A_child','*','#', 'max', '#', 'Absolute Value', 'max')
+  /*Get results backQC*/
+  def backqcresult=SGS.sampleNumericResults('labvantage',sdidataitem,SGS.concat(backqc,';'), 'NIOSH1550JA_A_child','*','#', 'max', '#', 'Absolute Value', 'max')
+  def result=-99999999
+  if(frontresult.length>0 && backresult.length>0 && frontqcresult.length>0 && backqcresult.length>0)
+  {     
+	result=(frontresult[0]+backresult[0]-SGS.average(frontqcresult)-SGS.average(backqcresult))*1000 /(${FLOW;Final Value}*${SamplingDuration;Final Value})
+  }
+  /* return resultvalue */
+  return result
+break;
+case ['Dup','LCS']: 
+  return ${NIOSH1550JA_A;*;*;workitem=#|VPH_C5_C9;Standard;max}
+break;
+case ['MB']: 
+  return 77
+break;
+default:
+  return 88
+break;
+}

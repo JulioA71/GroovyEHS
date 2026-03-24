@@ -1,0 +1,16 @@
+/* TM=APHA9221_E_W
+/* PL=ISO11731_Calculation_W */
+/* Parameter=ThermotolerantFecalColiform */
+/* (${TableMPN;Final Value}*10)/${Lowest_Dilution_Sample_Volume;Final Value}
+
+def result=0;
+if (${Lowest_Dilution_Sample_Volume;Final Value}>0)
+{
+  (${TableMPN;Final Value}*10)/${Lowest_Dilution_Sample_Volume;Final Value}
+}
+else
+{
+  result=0
+}
+return result
+

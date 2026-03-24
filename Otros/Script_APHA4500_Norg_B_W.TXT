@@ -1,0 +1,74 @@
+/* TM=APHA4500_Norg_B_W */
+/* PL=APHA4500_Norg_B_W */
+/* Parameter=14797-55-8 (Nitrate ion) */
+
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'APHA4500_Norg_B_W', '*', '*', 'max', '14797-55-8','Final Value', 'max') 
+/* APHA4110_B_W;*;*;#|14797-55-8;Final Value;max */
+  def nNitrate=SGS.getNumericResults('labvantage',sdidataitem, 'APHA4110_B_W','*','*', 'max', '14797-55-8', 'Final Value', 'max', false)
+  if( nNitrate.length>0)
+    result=nNitrate[0]
+  else
+    result=0
+  break;
+case ['FB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+/* TM=APHA4500_Norg_B_W */
+/* PL=APHA4500_Norg_B_W */
+/* Parameter=14797-65-0 (Nitrite ion) */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'APHA4500_Norg_B_W', '*', '*', 'max', '14797-65-0','Final Value', 'max') 
+/* APHA4110_B_W;*;*;#|14797-65-0;Final Value;max */
+  def nNitrite=SGS.getNumericResults('labvantage',sdidataitem, 'APHA4110_B_W','*','*', 'max', '14797-65-0', 'Final Value', 'max', false)
+  if( nNitrite.length>0)
+    result=nNitrite[0]
+  else
+    result=0
+  break;
+case ['FB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+/* TM=APHA4500_Norg_B_W */
+/* PL=APHA4500_Norg_B_W */
+/* Parameter=TKN (Total Kjeldahl Nitrogen) */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'APHA4500_Norg_B_W', '*', '*', 'max', 'TKN','Final Value', 'max') 
+/* APHA4110_B_W;*;*;#|TKN;Final Value;max */
+  def nTKN=SGS.getNumericResults('labvantage',sdidataitem, 'APHA4500_Norg_B_TKN_W','*','*', 'max', 'TKN', 'Final Value', 'max', false)
+  if( nTKN.length>0)
+    result=nTKN[0]
+  else
+    result=0
+  break;
+case ['FB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result

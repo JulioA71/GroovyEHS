@@ -1,0 +1,133 @@
+/* TM=SNI19_7117_17_A */
+/* PL=SNI19_7117_17_ASE */
+/* Parameter=DF */
+/* 1/[SGSIH_O2Cor_ASE;*;#;max|O2Cor;Final Value;max] */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_17_ASE', '*', '*', 'max', 'DF','Final Value', 'max') 
+/* SGSIH_O2Cor_ASE;*;*;#|O2Cor;Final Value;max */
+  def nO2Cor=SGS.getNumericResults('labvantage',sdidataitem, 'SGSIH_O2Cor_ASE','*','*', 'max', 'O2Cor', 'Final Value', 'max', false)
+  if( nO2Cor.length>0)
+    result=1/nO2Cor[0]
+  else
+    result=0
+  break;
+case ['FB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+/* TM=SNI19_7117_17_A */
+/* PL=SNI19_7117_17_ASE */
+/* Parameter=Multiplier */
+/* 1/[Field_Condition_ASE;*;#;max|Multiplier;Final Value;max] */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_17_ASE', '*', '*', 'max', 'Multiplier','Final Value', 'max') 
+/* Field_Condition_ASE;*;*;#|Multiplier;Final Value;max */
+  def multiField=SGS.getNumericResults('labvantage',sdidataitem, 'Field_Condition_ASE','*','*', 'max', 'Multiplier', 'Final Value', 'max', false)
+  if( multiField.length>0)
+    result=1/multiField[0]
+  else
+    result=0
+  break;
+case ['FB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+
+/* TM=SNI19_7117_17_A */
+/* PL=SNI19_7117_17_ASE */
+/* Parameter=TotalParticulate */
+/* ([FinalWeight;Final Value]-[InitialWeight;Final Value])+([FinalWeightAcetoneRinse;Final Value]-[InitialWeightAcetoneRinse;Final Value])-([AQC:FB;All|SNI19_7117_17_ASE;*;#;max|FinalWeight;Final Value;max]-[AQC:FB;All|SNI19_7117_17_ASE;*;#;max|InitialWeight;Final Value;max]) */
+
+def result=0;
+/* Get FB Values from AQC */
+def nFBIniWeight=${AQC:FB;All|SNI19_7117_17_ASE;*;#;max|InitialWeight;Final Value;*};
+def nFBFinWeight=${AQC:FB;All|SNI19_7117_17_ASE;*;#;max|FinalWeight;Final Value;*};
+if (nFBIniWeight>0)
+{
+  nFBIniWeight=nFBIniWeight
+}
+else
+{
+  nFBIniWeight=0
+}
+if (nFBFinWeight>0)
+{
+  nFBFinWeight=nFBFinWeight
+}
+else
+{
+  nFBFinWeight=0
+}
+/* Calculations */
+result=((${FinalWeight;Final Value}-${InitialWeight;Final Value})+(${FinalWeightAcetoneRinse;Final Value}-${InitialWeightAcetoneRinse;Final Value})-(nFBFinWeight-nFBIniWeight))
+
+
+/* TM=SNI19_7117_17_A */
+/* PL=SNI19_7117_17_ASE */
+/* Parameter=TotalParticulate */
+/* [TotalParticulate;Standard]/[Field_Condition_ASE;*;#;max|Multiplier;Final Value;max] */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_17_ASE', '*', '*', 'max', 'TotalParticulate','Final Value', 'max') 
+/* Field_Condition_ASE;*;*;#|Multiplier;Final Value;max*/
+  def multiField=SGS.getNumericResults('labvantage',sdidataitem, 'Field_Condition_ASE','*','*', 'max', 'Multiplier', 'Final Value', 'max', false)
+  if( multiField.length>0)
+    result=${TotalParticulate;Standard}*multiField[0]
+  else
+    result=0
+  break;
+case ['FB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+
+/* TM=SNI19_7117_17_A */
+/* PL=SNI19_7117_17_ASE */
+/* Parameter=TotalParticulateCOR */
+/* [TotalParticulate;Final Value]*[SGSIH_O2Cor_ASE;*;#;max|O2Cor;Final Value;max] */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_17_ASE', '*', '*', 'max', 'TotalParticulateCOR','Final Value', 'max') 
+/* [SGSIH_O2Cor_ASE;*;#;max|O2Cor;Final Value;max] */
+  def nO2Cor=SGS.getNumericResults('labvantage',sdidataitem, 'SGSIH_O2Cor_ASE','*','*', 'max', 'O2Cor', 'Final Value', 'max', false)
+  if( nO2Cor.length>0)
+    result=${TotalParticulate;Final Value}*nO2Cor[0]
+  else
+    result=0
+  break;
+case ['FB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result

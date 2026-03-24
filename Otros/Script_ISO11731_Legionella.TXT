@@ -1,0 +1,77 @@
+/* TM=ISO11731_W
+/* PL=ISO11731_ME_Filtration_W */
+/* Parameter=SampleVolumeFiltered */
+
+
+
+switch(${Procedure;Final Value})
+{
+case 'ISO11731_1-4': 
+     return 0.1
+break;
+case 'ISO11731_5-7': 
+     return 1000
+break;
+case 'ISO11731_8-10': 
+     return 1000
+break;
+default:
+return 99
+break;
+}
+
+
+/* TM=ISO11731_W
+/* PL=ISO11731_Calculation_W */
+/* Parameter=ColonyCount */
+/* (${TotalColoniesVerification;Final Value}/${VerifiedColonies;Final Value})/${ISO11731_Incubation_W;*;*;max|ColonyCount;Final Value;max}
+
+def result=0;
+if (${VerifiedColonies;Final Value}>0)
+{
+  result=(${TotalColoniesVerification;Final Value}/${VerifiedColonies;Final Value})*${ISO11731_Incubation_W;*;*;max|ColonyCount;Final Value;max}
+}
+else
+{
+  result=0
+}
+return result
+
+
+
+/* TM=ISO11731_W
+/* PL=ISO11731_Calculation_W */
+/* Parameter=Legionella */
+
+ISO11731_1-4
+ISO11731_5-7
+ISO11731_8-10
+${ISO11731_ME_Filtration_W;*;*;max|Procedure;Final Value;max}
+${ISO11731_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max}
+${ColonyCount;Final Value}
+
+
+switch(${ISO11731_ME_Filtration_W;*;*;max|Procedure;Final Value;max})
+{
+case 'ISO11731_1-4': 
+   if (${ISO11731_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max}>0)
+     return (${ColonyCount;Final Value}/${ISO11731_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max})*1000
+   else
+     return 0
+break;
+case 'ISO11731_5-7': 
+   if (${ISO11731_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max}>0)
+     return (${ColonyCount;Final Value}/${ISO11731_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max})*1000
+   else
+     return 0
+break;
+case 'ISO11731_8-10': 
+   if (${ISO11731_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max}>0 || ${ISO11731_ME_Filtration_W;*;*;max|PlateVolume;Final Value;max}>0)
+     return (${ColonyCount;Final Value}*${ISO11731_ME_Filtration_W;*;*;max|Wash;Final Value;max})/(${ISO11731_ME_Filtration_W;*;*;max|PlateVolume;Final Value;max}*${ISO11731_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max})*1000
+   else
+     return 0
+break;
+default:
+return 99
+break;
+}

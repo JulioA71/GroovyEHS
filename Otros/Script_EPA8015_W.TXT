@@ -1,0 +1,163 @@
+/* TM=EPA8015_W */
+/* PL=EPA8015_W */
+/* Parameter=GRO_C6_C10 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8015_W','*',${variantid}, ""+${dataset}, 'GRO_C6_C10','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;1120-21-4;112-40-3;629-50-5;629-59-4;629-62-9;544-76-3;629-78-7;1921-70-6;593-45-3;638-36-8;629-92-5;112-95-8;629-94-7;629-97-0;638-67-5;646-31-1;629-99-2;630-01-3;593-49-7;630-02-4;630-03-5;638-68-6;630-04-6;544-85-4;630-05-7;14167-59-0;630-07-9;630-06-8;7194-84-5;7194-85-6;7194-86-7;4181-95-7;1634-04-4;109-66-0;90-12-0;GRO_C6_C10;VPH_C5_C12;DRO_C10_C28;EPH_C9_C36;HF_C27');
+def paramList=paramList1
+def result=0;
+def nTot=0;
+def avgGro=0
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumGRO=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(SumGRO.length>0)
+	{
+		bResult=true;
+		result=result+SumGRO[0];
+		nTot=nTot+1
+	}
+}
+if ( bResult )
+	{
+    avgGro=result/nTot
+	} 
+else
+	{
+    avgGro=0
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+avgGro);
+return (!bResult?'':avgGro)
+
+
+
+/* TM=EPA8015_W */
+/* PL=EPA8015_W */
+/* Parameter=VPH_C5_C12 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8015_W','*',${variantid}, ""+${dataset}, 'VPH_C5_C12','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;629-50-5;629-59-4;629-62-9;544-76-3;629-78-7;1921-70-6;593-45-3;638-36-8;629-92-5;112-95-8;629-94-7;629-97-0;638-67-5;646-31-1;629-99-2;630-01-3;593-49-7;630-02-4;630-03-5;638-68-6;630-04-6;544-85-4;630-05-7;14167-59-0;630-07-9;630-06-8;7194-84-5;7194-85-6;7194-86-7;4181-95-7;GRO_C6_C10;VPH_C5_C12;DRO_C10_C28;EPH_C9_C36;HF_C27');
+def paramList=paramList1
+def result=0;
+def nTot=0;
+def avgVph=0
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumVPH=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(SumVPH.length>0)
+	{
+		bResult=true;
+		result=result+SumVPH[0];
+		nTot=nTot+1
+	}
+}
+if ( bResult )
+	{
+    avgVph=result/nTot
+	} 
+else
+	{
+    avgVph=0
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+avgVph);
+return (!bResult?'':avgVph)
+
+
+
+/* TM=EPA8015_W */
+/* PL=EPA8015_W */
+/* Parameter=DRO_C10_C28 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8015_W','*',${variantid}, ""+${dataset}, 'DRO_C10_C28','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;111-65-9;111-84-2;630-03-5;638-68-6;630-04-6;544-85-4;630-05-7;14167-59-0;630-07-9;630-06-8;7194-84-5;7194-85-6;7194-86-7;4181-95-7;71-43-2;100-41-4;108-88-3;95-47-6;108-38-3;106-42-3;1634-04-4;109-66-0;110-54-3;526-73-8;GRO_C6_C10;VPH_C5_C12;DRO_C10_C28;EPH_C9_C36;HF_C27');
+def paramList=paramList1
+def result=0;
+def nTot=0;
+def avgDro=0
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumDRO=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(SumDRO.length>0)
+	{
+		bResult=true;
+		result=result+SumDRO[0];
+		nTot=nTot+1
+	}
+}
+if ( bResult )
+	{
+    avgDro=result/nTot
+	} 
+else
+	{
+    avgDro=0
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+avgDro);
+return (!bResult?'':avgDro)
+
+
+
+/* TM=EPA8015_W */
+/* PL=EPA8015_W */
+/* Parameter=EPH_C9_C36 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8015_W','*',${variantid}, ""+${dataset}, 'EPH_C9_C36','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;111-65-9;7194-84-5;7194-85-6;7194-86-7;4181-95-7;71-43-2;100-41-4;108-88-3;95-47-6;108-38-3;106-42-3;1634-04-4;109-66-0;110-54-3;90-12-0;91-20-3;526-73-8;GRO_C6_C10;VPH_C5_C12;DRO_C10_C28;EPH_C9_C36;HF_C27');
+def paramList=paramList1
+def result=0;
+def nTot=0;
+def avgEph=0
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumEPH=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(SumEPH.length>0)
+	{
+		bResult=true;
+		result=result+SumEPH[0];
+		nTot=nTot+1
+	}
+}
+if ( bResult )
+	{
+    avgEph=result/nTot
+	} 
+else
+	{
+    avgEph=0
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+avgEph);
+return (!bResult?'':avgEph)
+
+
+
+/* TM=EPA8015_W */
+/* PL=EPA8015_W */
+/* Parameter=HF_C27 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8015_W','*',${variantid}, ""+${dataset}, 'HF_C27','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;111-65-9;111-84-2;124-18-5;1120-21-4;112-40-3;629-50-5;629-59-4;629-62-9;544-76-3;629-78-7;1921-70-6;593-45-3;638-36-8;629-92-5;112-95-8;629-94-7;629-97-0;638-67-5;646-31-1;629-99-2;630-01-3;593-49-7;71-43-2;100-41-4;108-88-3;95-47-6;108-38-3;106-42-3;1634-04-4;109-66-0;110-54-3;90-12-0;91-20-3;526-73-8;GRO_C6_C10;VPH_C5_C12;DRO_C10_C28;EPH_C9_C36;HF_C27');
+def paramList=paramList1
+def result=0;
+def nTot=0;
+def avgHf=0
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumHF=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(SumHF.length>0)
+	{
+		bResult=true;
+		result=result+SumHF[0];
+		nTot=nTot+1
+	}
+}
+if ( bResult )
+	{
+    avgHf=result/nTot
+	} 
+else
+	{
+    avgHf=0
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+avgHf);
+return (!bResult?'':avgHf)
+

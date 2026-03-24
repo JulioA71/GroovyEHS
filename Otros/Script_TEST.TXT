@@ -1,0 +1,26 @@
+def result=0;
+if (${PhenolphthaleinAlkalinity;Standard}==0)
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==${TotalAlkalinity;Standard})
+{
+  result=${TotalAlkalinity;Standard}
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}<(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}>(0.5*${TotalAlkalinity;Standard}))
+{
+  result=(2*${PhenolphthaleinAlkalinity;Standard})-${TotalAlkalinity;Standard}
+}
+return result

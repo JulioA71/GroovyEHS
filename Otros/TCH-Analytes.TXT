@@ -1,0 +1,31 @@
+Allyl chloride;107-05-1
+Benzyl chloride;100-44-7
+Bis(2-chloroethyl)sulfide;505-60-2
+Bromochloromethane;74-97-5
+Bromodichloromethane;75-27-4
+Chlorobenzene;108-90-7
+Chloroethane;75-00-3
+2-Chloroethanol;107-07-3
+2-Chloroethyl vinyl ether;110-75-8
+Chloroform;67-66-3
+Chloromethane;74-87-3
+1,2-Dibromo-3-chloropropane;96-12-8
+cis-1,4-Dichloro-2-butene;1476-11-5
+trans-1,4-Dichloro-2-butene;110-57-6
+1,1-Dichloroethane;75-34-3
+1,2-Dichloroethane;107-06-2
+1,2-Dichloropropane;78-87-5
+1,3-Dichloro-2-propanol;96-23-1
+cis-1,3-Dichloropropene;10061-01-5
+trans-1,3-Dichloropropene;10061-02-6
+Epichlorohydrin;106-89-8
+Hexachloroethane;67-72-1
+Methylene chloride;75-09-2
+Pentachloroethane;76-01-7
+1,1,1,2-Tetrachloroethane;630-20-6
+1,1,2,2-Tetrachloroethane;79-34-5
+1,1,1-Trichloroethane;71-55-6
+1,1,2-Trichloroethane;79-00-5
+Trichloroethene;79-01-6
+1,2,3-Trichloropropane;96-18-4
+Vinyl chloride;75-01-4

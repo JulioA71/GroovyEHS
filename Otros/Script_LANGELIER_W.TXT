@@ -1,0 +1,12 @@
+/* TM=LANGELIER_W */
+/* PL=LANGELIER_W */
+/* Parameter=pH_Sauration */
+(9.3+((logten([TDS;Final Value])-1)/10)+(-13.12*logten([Temperature;Final Value]+273)+34.55))-((logten([7440-70-2;Final Value])-0.4)+(logten([TotalAlkalinity;Final Value])))
+
+
+(ROUND(9.3+((logten([TDS;Final Value])-1)/10),1) + ROUND((-13.12*logten([Temperature;Final Value]+273)+34.55),1)) - (ROUND((logten([7440-70-2;Final Value])-0.4),1) + ROUND(logten([TotalAlkalinity;Final Value]),1))
+
+(9.3+((ROUND(logten([TDS;Final Value]),1)-1)/10) + (-13.12*ROUND(logten([Temperature;Final Value]+273),1)+34.55)) - ((ROUND(logten([7440-70-2;Final Value]),1)-0.4) + ROUND(logten([TotalAlkalinity;Final Value]),1))
+
+
+round( [x], n )

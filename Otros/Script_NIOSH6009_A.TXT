@@ -1,0 +1,31 @@
+/* TM=NIOSH6009_A */
+/* PL=NIOSH6009_A */
+/* Parameter=7439-97-6 */
+
+switch(${primary:qcsampletype})
+{
+case ['Unknown','Dup','LCS']: 
+  return ((${7439-97-6;Standard}*(${SampleVolume;Final Value}/${AliquotVolume;Final Value})-(SGS.average(SGS.toArray(${AQC:FB;All|NIOSH6009_A;*;#;max|7439-97-6;Standard;*})))) / ${AirVolume;Final Value})
+break;
+case ['MB','Blank']: 
+  return 0
+break;
+default:
+  return 0
+break;
+}
+
+
+
+switch(${primary:qcsampletype})
+{
+case ['Unknown','Dup','LCS']: 
+  return ((${7439-97-6;Standard}*(${SampleVolume;Final Value}/${AliquotVolume;Final Value})-(SGS.average(SGS.toArray(${AQC:Blank;All|NIOSH6009_A;*;#;max|7439-97-6;Standard;*})))) / ${AirVolume;Final Value})
+break;
+case ['MB','Blank']: 
+  return 0
+break;
+default:
+  return 0
+break;
+}

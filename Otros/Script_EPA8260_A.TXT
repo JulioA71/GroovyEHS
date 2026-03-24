@@ -1,0 +1,130 @@
+/* TM=EPA8260_A */
+/* PL=EPA8260_A */
+/* Parameter=VolatileAromatics_C6_C10 */
+
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8260_A','*',${variantid}, ""+${dataset}, 'VolatileAromatics_C6_C10','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;AirVolume;BTEX;SumDichloropropane;TotalXylene;SpikeVolume;FinalVolume;VolatileAromatics_C6_C10');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def Sum1=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(Sum1.length>0)
+	{
+		bResult=true;
+		result=result+Sum1[0];
+	}
+}
+if (${primary:qcsampletype}=='MB')
+{
+  result=0
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+/* TM=EPA8260_S */
+/* PL=EPA8260_S */
+/* Parameter=TCH */
+/* ('10061-01-5','10061-02-6','106-43-4','106-46-7','107-06-2','108-90-7','120-82-1','124-48-1','127-18-4','142-28-9','156-59-2','156-60-5','541-73-1','56-23-5','563-58-6','594-20-7','630-20-6','67-66-3','71-55-6','74-87-3','74-97-5','75-00-3','75-01-4','75-09-2','75-27-4','75-34-3','75-35-4','75-69-4','75-71-8','78-87-5','79-00-5','79-07-6','79-34-5','87-61-6','87-68-3','95-49-8','95-50-1','96-12-8','96-18-4') */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8260_S','*','*', 'max', 'TCH','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;74-83-9;71-43-2;74-95-3;79-01-6;108-88-3;106-93-4;100-41-4;179601-23-1;75-25-2;100-42-5;95-47-6;98-82-8;108-86-1;103-65-1;108-67-8;98-06-6;95-63-6;135-98-8;99-87-6;104-51-8;91-20-3;1634-04-4;TotalChloroBenzene;TotalXylene;BTEX;TCH;3114-55-4;363-72-4;3855-82-1;SpikeVolume;FinalVolume');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def Sum1=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(Sum1.length>0)
+	{
+		bResult=true;
+		result=result+Sum1[0];
+	}
+}
+if (${primary:qcsampletype}=='MB')
+{
+  result=0
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+
+/* TM=EPA8260_S */
+/* PL=EPA8260_S */
+/* Parameter=TotalChloroBenzene */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8260_S','*','*', 'max', 'TotalChloroBenzene','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;75-71-8;74-87-3;75-01-4;74-83-9;75-00-3;75-69-4;75-35-4;75-09-2;156-60-5;75-34-3;156-59-2;74-97-5;67-66-3;594-20-7;107-06-2;71-55-6;563-58-6;56-23-5;71-43-2;74-95-3;78-87-5;79-01-6;75-27-4;10061-01-5;10061-02-6;79-00-5;108-88-3;142-28-9;124-48-1;106-93-4;630-20-6;127-18-4;100-41-4;179601-23-1;75-25-2;100-42-5;79-34-5;95-47-6;96-18-4;98-82-8;108-86-1;103-65-1;108-67-8;98-06-6;95-63-6;135-98-8;99-87-6;104-51-8;96-12-8;91-20-3;87-68-3;1634-04-4;TotalChloroBenzene;TotalXylene;BTEX;TCH;3114-55-4;363-72-4;3855-82-1;SpikeVolume;FinalVolume');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def Sum1=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(Sum1.length>0)
+	{
+		bResult=true;
+		result=result+Sum1[0];
+	}
+}
+if (${primary:qcsampletype}=='MB')
+{
+  result=0
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+
+/* TM=EPA8260_W */
+/* PL=EPA8260_W */
+/* Parameter=TotalChloroBenzene */
+/* ('108-90-7','95-49-8','106-43-4','541-73-1','106-46-7','95-50-1','120-82-1','87-61-6') */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8260_W','*','*', 'max', 'TotalChloroBenzene','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;100-41-4;100-42-5;10061-02-6;103-65-1;104-51-8;107-06-2;108-67-8;108-86-1;108-88-3;74-97-5;124-48-1;127-18-4;142-28-9;156-59-2;156-60-5;10061-01-5;179601-23-1;56-23-5;563-58-6;594-20-7;630-20-6;71-43-2;71-55-6;74-83-9;74-87-3;74-95-3;75-00-3;75-01-4;75-09-2;75-25-2;75-27-4;75-34-3;75-35-4;75-69-4;75-71-8;78-87-5;79-00-5;79-01-6;79-34-5;87-68-3;91-20-3;95-47-6;95-63-6;96-12-8;96-18-4;98-06-6;99-87-6;67-66-3;106-93-4;135-98-8;1634-04-4;98-82-8;TotalChloroBenzene;TotalXylene;BTEX;3855-82-1;363-72-4;3114-55-4;SpikeVolume;FinalVolume');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def metal=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(metal.length>0)
+	{
+		bResult=true;
+		result=result+metal[0];
+	}
+}
+if (${primary:qcsampletype}=='MB')
+{
+  result=0
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+/* TM=EPA8260_W */
+/* PL=EPA8260_WW */
+/* Parameter=TotalChloroBenzene */
+/* ('108-90-7','95-49-8','106-43-4','541-73-1','106-46-7','95-50-1','120-82-1','87-61-6') */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'EPA8260_WW','*','*', 'max', 'TotalChloroBenzene','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;87-68-3;563-58-6;10061-02-6;10061-01-5;71-43-2;98-82-8;135-98-8;95-63-6;108-86-1;104-51-8;103-65-1;98-06-6;56-23-5;74-87-3;75-71-8;630-20-6;71-55-6;79-34-5;79-00-5;75-34-3;106-93-4;107-06-2;75-35-4;75-01-4;75-00-3;100-41-4;156-60-5;156-59-2;179601-23-1;108-67-8;74-83-9;74-97-5;75-27-4;74-95-3;124-48-1;75-25-2;75-09-2;91-20-3;95-47-6;99-87-6;96-18-4;96-12-8;78-87-5;142-28-9;594-20-7;1634-04-4;100-42-5;127-18-4;108-88-3;79-01-6;75-69-4;67-66-3;TotalXylene;BTEX;TotalChloroBenzene;3855-82-1;363-72-4;3114-55-4;SpikeVolume;FinalVolume');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def metal=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(metal.length>0)
+	{
+		bResult=true;
+		result=result+metal[0];
+	}
+}
+if (${primary:qcsampletype}=='MB')
+{
+  result=0
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+

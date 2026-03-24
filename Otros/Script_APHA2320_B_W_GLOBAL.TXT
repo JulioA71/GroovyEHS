@@ -1,0 +1,258 @@
+/* TM=APHA2320_B_W */
+/* PL=APHA2320_B_W */
+/* Parameter=BicarbonateAlkalinity */
+
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'APHA2320_B_W', '*', '*', 'max', 'BicarbonateAlkalinity','Standard', 'max');
+/* Get Values from Parameters */
+def nPhenolphthaleinAlkalinity=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'PhenolphthaleinAlkalinity', 'Standard', 'max', true)[0];
+def nTotalAlkalinity=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'TotalAlkalinity', 'Standard', 'max', true)[0];
+
+
+
+
+def result=0;
+if (${PhenolphthaleinAlkalinity;Standard}==0)
+{
+  result=${TotalAlkalinity;Standard}
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==${TotalAlkalinity;Standard})
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}<(0.5*${TotalAlkalinity;Standard}))
+{
+  result=${TotalAlkalinity;Standard}-(2*${PhenolphthaleinAlkalinity;Standard})
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}>(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+return result
+
+
+
+/* TM=SNI19_7117_18_A */
+/* PL=SNI19_7117_18_ASE */
+/* Parameter=7446-09-5 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_18_Unc_ASE', '*', '*', 'max', '7446-09-5','Final Value', 'max');
+/* Get Values from Parameters */
+def nDF=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'DF', 'Final Value', 'max', true)[0];
+def nUnkStandard=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', '7446-09-5', 'Standard', 'max', true)[0];
+def nSampleVolume=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'SampleVolume', 'Final Value', 'max', true)[0];
+def nMultiplier=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Multiplier', 'Final Value', 'max', true)[0];
+/* Get MB Values from AQC */
+def nMBStandard=${AQC:MB;All|SNI19_7117_18_Unc_ASE;*;#;max|7446-09-5;Standard;*};
+if (nMBStandard>0)
+{
+  nMBStandard=nMBStandard
+}
+else
+{
+  nMBStandard=0
+}
+/* Calculations */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  result=(64/96) * (nUnkStandard-nMBStandard) * nDF * (250/nSampleVolume) * nMultiplier * 1000
+  break;
+case ['MB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+
+
+
+
+/* TM=SNI19_7117_18_A */
+/* PL=SNI19_7117_18_ASE */
+/* Parameter=Multiplier */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_18_Unc_ASE', '*', '*', 'max', 'Multiplier','Final Value', 'max') 
+/* Field_Condition_ASE;*;*;#|Multiplier;Final Value;max*/
+  def multiField=SGS.getNumericResults('labvantage',sdidataitem, 'Field_Condition_ASE','*','*', 'max', 'Multiplier', 'Final Value', 'max', false)
+  if( multiField.length>0)
+    result=1/multiField[0]
+  else
+    result=1
+  break;
+case ['MB']:
+  result=1
+  break;
+default:
+  result=1
+  break;
+}
+return result
+
+
+/* TM=SNI19_7117_18_A */
+/* PL=SNI19_7117_18_ASE */
+/* Parameter=7446-09-5 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_18_Unc_ASE', '*', '*', 'max', '7446-09-5','Final Value', 'max');
+/* Get Values from Parameters */
+def nDF=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'DF', 'Final Value', 'max', true)[0];
+def nUnkStandard=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', '7446-09-5', 'Standard', 'max', true)[0];
+def nSampleVolume=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'SampleVolume', 'Final Value', 'max', true)[0];
+def nMultiplier=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Multiplier', 'Final Value', 'max', true)[0];
+/* Get MB Values from AQC */
+def nMBStandard=${AQC:MB;All|SNI19_7117_18_Unc_ASE;*;#;max|7446-09-5;Standard;*};
+if (nMBStandard>0)
+{
+  nMBStandard=nMBStandard
+}
+else
+{
+  nMBStandard=0
+}
+/* Calculations */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  result=(64/96) * (nUnkStandard-nMBStandard) * nDF * (250/nSampleVolume) * nMultiplier * 1000
+  break;
+case ['MB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+/* TM=SNI19_7117_18_A */
+/* PL=SNI19_7117_18_Cor_ASE */
+/* Parameter=Multiplier */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_18_Cor_ASE', '*', '*', 'max', 'Multiplier','Final Value', 'max') 
+/* Field_Condition_ASE;*;*;#|Multiplier;Final Value;max*/
+  def multiField=SGS.getNumericResults('labvantage',sdidataitem, 'Field_Condition_ASE','*','*', 'max', 'Multiplier', 'Final Value', 'max', false)
+/* SGSIH_O2Cor_ASE */
+  def nO2Cor=SGS.getNumericResults('labvantage',sdidataitem, 'SGSIH_O2Cor_ASE','*','*', 'max', 'O2Cor', 'Final Value', 'max', false)
+  if( nO2Cor.length>0)
+    if( multiField.length>0)
+       result=(1/multiField[0])*nO2Cor[0]
+    else
+       result=1
+  else
+    result=1
+  break;
+case ['MB']:
+  result=1
+  break;
+default:
+  result=1
+  break;
+}
+return result
+
+
+/* TM=SNI19_7117_18_A */
+/* PL=SNI19_7117_18_Cor_ASE */
+/* Parameter=7446-09-5 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_18_Cor_ASE', '*', '*', 'max', '7446-09-5','Final Value', 'max');
+/* Get Values from Parameters */
+def nDF=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'DF', 'Final Value', 'max', true)[0];
+def nUnkStandard=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', '7446-09-5', 'Standard', 'max', true)[0];
+def nSampleVolume=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'SampleVolume', 'Final Value', 'max', true)[0];
+def nMultiplier=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Multiplier', 'Final Value', 'max', true)[0];
+/* Get MB Values from AQC */
+def nMBStandard=${AQC:MB;All|SNI19_7117_18_Cor_ASE;*;#;max|7446-09-5;Standard;*};
+/* Calculations */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  result=(64/96) * (nUnkStandard-nMBStandard) * nDF * (250/nSampleVolume) * nMultiplier * 1000
+  break;
+case ['MB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+
+
+
+/* TEST */
+def result=0;
+if (${PhenolphthaleinAlkalinity;Standard}==0)
+{
+  result=${TotalAlkalinity;Standard}
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==${TotalAlkalinity;Standard})
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}<(0.5*${TotalAlkalinity;Standard}))
+{
+  result=${TotalAlkalinity;Standard}-(2*${PhenolphthaleinAlkalinity;Standard})
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}>(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+return result
+
+
+/* UAT */
+def result=0;
+if (${PhenolphthaleinAlkalinity;Standard}==0)
+{
+  result=${TotalAlkalinity;Standard}
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==${TotalAlkalinity;Standard})
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}<(0.5*${TotalAlkalinity;Standard}))
+{
+  result=${TotalAlkalinity;Standard}-(2*${PhenolphthaleinAlkalinity;Standard})
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}>(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+return result

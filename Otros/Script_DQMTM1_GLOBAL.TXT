@@ -1,0 +1,53 @@
+/* TM=DQMTM1 */
+/* PL=DQMPL1 */
+/* Parameter=DQMSum1 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'DQMPL1','*',${variantid}, ""+${dataset}, 'DQMSum1','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;DQMParam4;DQMParam5;DQMParam6;DQMSum1;DQMSum2;DQMAvg1;DQMAvg2');
+def paramList2=SGS.getParamsByParamType(sdidataitem,'Standard','DF;Multiplier;DQMParam4;DQMParam5;DQMParam6;DQMSum1;DQMSum2;DQMAvg1;DQMAvg2');
+def paramList=paramList1+paramList2
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def Sum1=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(Sum1.length>0)
+	{
+		bResult=true;
+		result=result+Sum1[0];
+	}
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+
+/* TM=DQMTM1 */
+/* PL=DQMPL1 */
+/* Parameter=DQMAvg1 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'DQMPL1','*',${variantid}, ""+${dataset}, 'DQMAvg1','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;DQMParam4;DQMParam5;DQMParam6;DQMSum1;DQMSum2;DQMAvg1;DQMAvg2');
+def paramList=paramList1
+def result=0;
+def nParam=0;
+def avg1=0
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def Sum1=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(Sum1.length>0)
+	{
+		bResult=true;
+		result=result+Sum1[0];
+		nParam=nParam+1
+	}
+}
+if ( bResult )
+	{
+    avg1=result/nParam
+	} 
+else
+	{
+    avg1=0
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+avg1);
+return (!bResult?'':avg1)

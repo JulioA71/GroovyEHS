@@ -1,0 +1,13 @@
+/* TM=NIOSH1003_A */
+/* PL=NIOSH1003_A */
+/* Parameter=106-46-7 */
+/* Type=Standard */
+if([106-46-7;WB] > [106-46-7;WF]/10, "Possible loss sample",string([106-46-7;WF]+[106-46-7;WB]-avg([AQC:MB;All|NIOSH1003_A;*;#;max|106-46-7;WF;*])-avg([AQC:MB;All|NIOSH1003_A;*;#;max|106-46-7;WB;*])))
+
+
+
+/* TM=NIOSH1003_A */
+/* PL=NIOSH1003_A */
+/* Parameter=106-46-7 */
+/* Type=FinalValue */
+([106-46-7;WF]+[106-46-7;WB]-avg([AQC:MB;All|NIOSH1003_A;*;#;max|106-46-7;WF;*])-avg([AQC:MB;All|NIOSH1003_A;*;#;max|106-46-7;WB;*]))/[WaterVolume;Final Value]

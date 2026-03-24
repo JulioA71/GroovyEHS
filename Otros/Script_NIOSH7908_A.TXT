@@ -1,0 +1,37 @@
+/* TM=NIOSH7908_A */
+/* PL=NIOSH7908_A */
+/* Parameter=7664-93-9 - Sulfuric Acid */
+
+switch(${primary:qcsampletype})
+{
+case ['Unknown','Dup','LCS']: 
+  return (((${7664-93-9;Standard}*${SampleVolume;Final Value}*${DF;Final Value})-(SGS.average(SGS.toArray(${AQC:FB;All|NIOSH7908_A;*;#;max|SampleVolume;Final Value;*}))*SGS.average(SGS.toArray(${AQC:FB;All|NIOSH7908_A;*;#;max|7664-93-9;Standard;*})))) / ${AirVolume;Final Value})*1.021
+break;
+case ['FB']: 
+  return 0
+break;
+default:
+  return 0
+break;
+}
+
+
+
+switch(${primary:qcsampletype})
+{
+case ['Unknown','Dup']: 
+  return (((${7664-93-9;Standard}*${SampleVolume;Final Value}*${DF;Final Value})-(SGS.average(SGS.toArray(${AQC:FB;All|NIOSH7908_A;*;#;max|SampleVolume;Final Value;*}))*SGS.average(SGS.toArray(${AQC:FB;All|NIOSH7908_A;*;#;max|7664-93-9;Standard;*})))) / (${FLOW;Final Value} *${SamplingDuration;Final Value}))*1.021
+break;
+case ['FB','LCS']: 
+  return 0
+break;
+default:
+  return 0
+break;
+}
+
+
+
+
+if(string([primary:qcsampletype])="FB",0,1.021*([7664-93-9;Standard]*[SampleVolume;Final Value]*[DF;Final Value]-avg([AQC:MB;All|NIOSH7908_A;*;#;max|7664-93-9;Standard;*])*avg([AQC:MB;All|NIOSH7908_A;*;#;max|SampleVolume;Final Value;*]))/[AirVolume;Final Value])
+

@@ -1,0 +1,30 @@
+DQM Training Session 01
+Assigment=10A2500288
+TM=WI009963
+PL=PL005707 / PL005708
+
+Samples:
+10S25355468
+
+DQM Training Session 02
+Assigment=10A2500288
+TM=WI009964
+PL=PL005709 / PL005710
+
+Samples:
+10S25355570
+
+
+https://test-ehs-labvantage.sgs.net/
+
+TM: DQM_8260_W
+PL: DQM_8260_W
+
+
+
+DQM Training Session 02
+Assigment=10A2500288
+TM=WI009964
+
+Samples:
+10S25356020 / 10S25356023 / 10S25356024

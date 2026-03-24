@@ -1,0 +1,2559 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Expressions</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="Stylesheet" type="text/css" href="style.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				document.querySelectorAll("pre code").forEach(function(codeElement) {
+					const html = codeElement.innerHTML.trim();
+					const newHtml = html.replace(/^(.*)$/mg, '<span class="line">$1</span>');
+					codeElement.innerHTML = newHtml;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		
+<div id="Contents" class="toc"><h1 id="Contents" class="header"><a href="#Contents">Contents</a></h1></div>
+<ul>
+<li>
+<a href="Expressions.html#GROOVY EXPRESSIONS">#GROOVY EXPRESSIONS</a>
+
+<ul>
+<li>
+<a href="Expressions.html#Agregate Expressions">#Agregate Expressions</a>
+
+<ul>
+<li>
+<a href="Expressions.html#Average">#Average</a>
+
+<li>
+<a href="Expressions.html#Min">#Min</a>
+
+<li>
+<a href="Expressions.html#Max">#Max</a>
+
+<li>
+<a href="Expressions.html#Sum">#Sum</a>
+
+<li>
+<a href="Expressions.html#Concatenation">#Concatenation</a>
+
+<li>
+<a href="Expressions.html#Distinct concatenation">#Distinct concatenation</a>
+
+</ul>
+<li>
+<a href="Expressions.html#Internal Sample Expressions">#Internal Sample Expressions</a>
+
+<ul>
+<li>
+<a href="Expressions.html#Get SDIDataItem">#Get SDIDataItem</a>
+
+<li>
+<a href="Expressions.html#Check if results exist">#Check if results exist</a>
+
+<li>
+<a href="Expressions.html#Get numeric result">#Get numeric result</a>
+
+<li>
+<a href="Expressions.html#Get numeric result from a sample">#Get numeric result from a sample</a>
+
+<li>
+<a href="Expressions.html#Get text result">#Get text result</a>
+
+<li>
+<a href="Expressions.html#Get text result from a sample">#Get text result from a sample</a>
+
+<li>
+<a href="Expressions.html#Get date and time result">#Get date and time result</a>
+
+<li>
+<a href="Expressions.html#Get date and time results from a sample">#Get date and time results from a sample</a>
+
+<li>
+<a href="Expressions.html#Get date result (without time)">#Get date result (without time)</a>
+
+<li>
+<a href="Expressions.html#Get date result (without time) from a sample">#Get date result (without time) from a sample</a>
+
+<li>
+<a href="Expressions.html#Get Limit object">#Get Limit object</a>
+
+<li>
+<a href="Expressions.html#Get Limit object from a sample">#Get Limit object from a sample</a>
+
+<li>
+<a href="Expressions.html#Get Attribute object">#Get Attribute object</a>
+
+<li>
+<a href="Expressions.html#Get Attribute object from a sample">#Get Attribute object from a sample</a>
+
+</ul>
+<li>
+<a href="Expressions.html#External Sample Expressions">#External Sample Expressions</a>
+
+<ul>
+<li>
+<a href="Expressions.html#Get child sample ID">#Get child sample ID</a>
+
+<li>
+<a href="Expressions.html#Get parent sample ID">#Get parent sample ID</a>
+
+<li>
+<a href="Expressions.html#Get QC sample ID">#Get QC sample ID</a>
+
+<li>
+<a href="Expressions.html#Get QC sample ID by work item">#Get QC sample ID by work item</a>
+
+</ul>
+</ul>
+</ul>
+<div id="GROOVY EXPRESSIONS"><h1 id="GROOVY EXPRESSIONS" class="header"><a href="#GROOVY EXPRESSIONS">GROOVY EXPRESSIONS</a></h1></div>
+
+<div id="GROOVY EXPRESSIONS-Agregate Expressions"><h2 id="Agregate Expressions" class="header"><a href="#GROOVY EXPRESSIONS-Agregate Expressions">Agregate Expressions</a></h2></div>
+
+<div id="GROOVY EXPRESSIONS-Agregate Expressions-Average"><h3 id="Average" class="header"><a href="#GROOVY EXPRESSIONS-Agregate Expressions-Average">Average</a></h3></div>
+
+<p>
+Return the average of the values entered in the <em>values</em> argument.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Average-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.average(values);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Average-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(Numeric Array)</em> values: Numeric array of values
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Average-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+return SGS.average(${7439-97-6;Standard});
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Agregate Expressions-Min"><h3 id="Min" class="header"><a href="#GROOVY EXPRESSIONS-Agregate Expressions-Min">Min</a></h3></div>
+
+<p>
+Return the minimum (smallest) value from the values entered in the <em>values</em> argument.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Min-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.min(values);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Min-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(Numeric Array)</em> values: Numeric array of values
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Min-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+return SGS.min(${SampledVolume;Standard});
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Agregate Expressions-Max"><h3 id="Max" class="header"><a href="#GROOVY EXPRESSIONS-Agregate Expressions-Max">Max</a></h3></div>
+
+<p>
+Return the maximum (largest) value from the values entered in the <em>values</em> argument.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Max-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.max(values);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Max-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(Numeric Array)</em> values: Numeric array of values
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Max-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+return SGS.max(${SampledVolume;Standard});
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Agregate Expressions-Sum"><h3 id="Sum" class="header"><a href="#GROOVY EXPRESSIONS-Agregate Expressions-Sum">Sum</a></h3></div>
+
+<p>
+Return the sum of the values entered in the <em>values</em> argument.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Sum-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.sum(values);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Sum-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(Numeric Array)</em> values: Numeric array of values
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Sum-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+return SGS.sum(${7439-97.6;Standard});
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Agregate Expressions-Concatenation"><h3 id="Concatenation" class="header"><a href="#GROOVY EXPRESSIONS-Agregate Expressions-Concatenation">Concatenation</a></h3></div>
+
+<p>
+Return a string with the values entered in the <em>values</em> argument, separated by the value entered in the <em>separator</em> argument.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Concatenation-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.concat(values, separator)
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Concatenation-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String Array)</em> values: String array of values
+
+<li>
+<em>(String)</em> separator: String that will be used as separator (use empty string <code>''</code> if none is desired)
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Concatenation-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+return SGS.concat(${Appearance;Standard}, ';');
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Agregate Expressions-Distinct concatenation"><h3 id="Distinct concatenation" class="header"><a href="#GROOVY EXPRESSIONS-Agregate Expressions-Distinct concatenation">Distinct concatenation</a></h3></div>
+
+<p>
+Return a string with the <span id="GROOVY EXPRESSIONS-Agregate Expressions-Distinct concatenation-distinct"></span><strong id="distinct">distinct</strong> (ignore duplicates) values entered in the <em>values</em> argument, separated by the value entered in the <em>separator</em> argument.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Distinct concatenation-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.distinctConcat(values, separator);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Distinct concatenation-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String Array)</em> values: String array of values
+
+<li>
+<em>(String)</em> separator: String that will be used as separator (use empty string <code>''</code> if none is desired)
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Agregate Expressions-Distinct concatenation-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+return SGS.distinctConcat(${Appearance;Standard}, ';');
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions"><h2 id="Internal Sample Expressions" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions">Internal Sample Expressions</a></h2></div>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Note:"></span><strong id="Note:">Note:</strong> Datasets with status "Cancelled" and results marked as Outlier are excluded from the results.
+</p>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem"><h3 id="Get SDIDataItem" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem">Get SDIDataItem</a></h3></div>
+
+<p>
+Return a DataItemInfo object. Used as an argument on several expressions.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.getSDIDataitem(datasourceid, sampleid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(String)</em> sampleid: Sample ID or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, or <code>'*'</code> (all)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, or <code>'*'</code> (all)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, or <code>'*'</code> (all)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, or <code>'*'</code> (all)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, or <code>'*'</code> (all)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code>, or <code>'max'</code>
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return a DataItemInfo object's property
+return SDIDataItem.paramid;
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get SDIDataItem-Object properties"></span><strong id="Object properties">Object properties</strong>
+<table>
+<thead>
+<tr>
+<th>
+Properties
+</th>
+<th>
+Data Type
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+sdcid
+</td>
+<td>
+String
+</td>
+<td>
+SDC ID
+</td>
+</tr>
+<tr>
+<td>
+keyid1
+</td>
+<td>
+String
+</td>
+<td>
+Sample ID
+</td>
+</tr>
+<tr>
+<td>
+keyid2
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+keyid3
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+paramlistid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List
+</td>
+</tr>
+<tr>
+<td>
+paramlistversionid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List version
+</td>
+</tr>
+<tr>
+<td>
+variantid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List variant
+</td>
+</tr>
+<tr>
+<td>
+dataset
+</td>
+<td>
+Integer
+</td>
+<td>
+Dataset number
+</td>
+</tr>
+<tr>
+<td>
+paramid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter ID
+</td>
+</tr>
+<tr>
+<td>
+paramtype
+</td>
+<td>
+String
+</td>
+<td>
+Parameter type
+</td>
+</tr>
+<tr>
+<td>
+replicateid
+</td>
+<td>
+Integer
+</td>
+<td>
+Replicate number
+</td>
+</tr>
+<tr>
+<td>
+datatypes
+</td>
+<td>
+String
+</td>
+<td>
+Data type
+</td>
+</tr>
+<tr>
+<td>
+aliasid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter alias
+</td>
+</tr>
+<tr>
+<td>
+releasedflag
+</td>
+<td>
+String
+</td>
+<td>
+Parameter Released flag
+</td>
+</tr>
+<tr>
+<td>
+reportflag
+</td>
+<td>
+String
+</td>
+<td>
+Parameter set to reportable flag
+</td>
+</tr>
+<tr>
+<td>
+activeflag
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+calcexcludedflag
+</td>
+<td>
+String
+</td>
+<td>
+Parameter marked as outlier
+</td>
+</tr>
+<tr>
+<td>
+sourceworkitemid
+</td>
+<td>
+String
+</td>
+<td>
+Test Method ID
+</td>
+</tr>
+<tr>
+<td>
+sourceworkiteminstance
+</td>
+<td>
+String
+</td>
+<td>
+Test Method instance
+</td>
+</tr>
+<tr>
+<td>
+s_qcbatchid
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+s_qcbatchitemid
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Check if results exist"><h3 id="Check if results exist" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Check if results exist">Check if results exist</a></h3></div>
+
+<p>
+Return a boolean (true or false). Check if there's a valid result in the specified parameter.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Check if results exist-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.checkResults(datasourceid, sdidataitem, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Check if results exist-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Check if results exist-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Check if results exist-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Check if results exist-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the boolean if the result exists or not
+return SGS.checkResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true);
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result"><h3 id="Get numeric result" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result">Get numeric result</a></h3></div>
+
+<p>
+Return a array of numeric values (either from the entered value or the transformed value, if the Transformation Rule is applied) contained in the specified parameter. Allow use of array properties.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.getNumericResults(datasourceid, sdidataitem, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result-Example 1"></span><strong id="Example 1">Example 1</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the first position of the array
+return SGS.getNumericResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result-Example 2"></span><strong id="Example 2">Example 2</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return array property 'length' (array size)
+return SGS.getNumericResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true).length;
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result from a sample"><h3 id="Get numeric result from a sample" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result from a sample">Get numeric result from a sample</a></h3></div>
+
+<p>
+Return a array of numeric values (either from the entered value or the transformed value, if the Transformation Rule is applied) contained in the specified parameter from one or more sample ID. Allow use of array properties.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result from a sample-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.sampleNumericResults(datasourceid, sdidataitem, sampleid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result from a sample-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result from a sample-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result from a sample-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> sampleid: Sample IDs (separated by <code>;</code>) or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get numeric result from a sample-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Get the child samples and concatenate using ; as a separator
+def childSamples = SGS.concat(SGS.childSampleId('labvantage', ${primary:s_sampleid}, ""), ';');
+// Return the first position of the array
+return SGS.sampleNumericResults('labvantage', SDIDataItem, childSamples, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result"><h3 id="Get text result" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result">Get text result</a></h3></div>
+
+<p>
+Return a array of text values contained in the specified parameter. Allow use of array properties.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.getTextResults(datasourceid, sdidataitem, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result-Example 1"></span><strong id="Example 1">Example 1</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the first position of the array
+return SGS.getTextResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result-Example 2"></span><strong id="Example 2">Example 2</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return array property 'length' (array size)
+return SGS.getTextResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true).length;
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result from a sample"><h3 id="Get text result from a sample" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result from a sample">Get text result from a sample</a></h3></div>
+
+<p>
+Return a array of text values contained in the specified parameter from one or more sample ID. Allow use of array properties.
+</p>
+
+<p>
+*Expression
+</p>
+<pre type=groovy><code>
+SGS.sampleTextResults(datasourceid, sdidataitem, sampleid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result from a sample-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result from a sample-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result from a sample-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> sampleid: Sample IDs (separated by <code>;</code>) or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get text result from a sample-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Get the child samples and concatenate using ; as a separator
+def childSamples = SGS.concat(SGS.childSampleId('labvantage', ${primary:s_sampleid}, ""), ';');
+// Return the first position of the array
+return SGS.sampleTextResults('labvantage', SDIDataItem, childSamples, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result"><h3 id="Get date and time result" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result">Get date and time result</a></h3></div>
+
+<p>
+Return a array of date and time values contained in the specified parameter. Allow use of array properties.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.getDateResults(datasourceid, sdidataitem, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result-Example 1"></span><strong id="Example 1">Example 1</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the first position of the array
+return SGS.getDateResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time result-Example 2"></span><strong id="Example 2">Example 2</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return array property 'length' (array size)
+return SGS.getDateResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true).length;
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time results from a sample"><h3 id="Get date and time results from a sample" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time results from a sample">Get date and time results from a sample</a></h3></div>
+
+<p>
+Return a array of date and time values contained in the specified parameter from one or more sample ID. Allow use of array properties.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time results from a sample-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.sampleDateResults(datasourceid, sdidataitem, sampleid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time results from a sample-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time results from a sample-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time results from a sample-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> sampleid: Sample IDs (separated by <code>;</code>) or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date and time results from a sample-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Get the child samples and concatenate using ; as a separator
+def childSamples = SGS.concat(SGS.childSampleId('labvantage', ${primary:s_sampleid}, ""), ';');
+// Return the first position of the array
+return SGS.sampleDateResults('labvantage', SDIDataItem, childSamples, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)"><h3 id="Get date result (without time)" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)">Get date result (without time)</a></h3></div>
+
+<p>
+Return a array of date (without time) values contained in the specified parameter. Allow use of array properties.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.getDateOnlyResults(datasourceid, sdidataitem, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)-Example 1"></span><strong id="Example 1">Example 1</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the first position of the array
+return SGS.getDateOnlyResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time)-Example 2"></span><strong id="Example 2">Example 2</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return array property 'length' (array size)
+return SGS.getDateOnlyResults('labvantage', SDIDataItem, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true).length;
+</code></pre>
+
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time) from a sample"><h3 id="Get date result (without time) from a sample" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time) from a sample">Get date result (without time) from a sample</a></h3></div>
+
+<p>
+Return a array of date (without time) values contained in the specified parameter from one or more sample ID. Allow use of array properties.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time) from a sample-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.sampleDateOnlyResults(datasourceid, sdidataitem, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time) from a sample-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time) from a sample-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time) from a sample-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> sampleid: Sample IDs (separated by <code>;</code>) or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get date result (without time) from a sample-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Get the child samples and concatenate using ; as a separator
+def childSamples = SGS.concat(SGS.childSampleId('labvantage', ${primary:s_sampleid}, ""), ';');
+// Return the first position of the array
+return SGS.sampleDateOnlyResults('labvantage', SDIDataItem, childSamples, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0];
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object"><h3 id="Get Limit object" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object">Get Limit object</a></h3></div>
+
+<p>
+Return a Limit object array. Values can be accessed using the object properties for each array position.
+</p>
+
+<p>
+Expression
+</p>
+<pre type=groovy><code>
+SGS.getLimitResults(datasourceid, sdidataitem, limittypeid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+(String) limittypeid: List of Limit Type ID, separated by <code>;</code>, or <code>'*'</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the 'value1num' from the limit type 'RL'
+return SGS.getLimitResults('labvantage', SDIDataItem, 'RL', 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0].value1num;
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object-Object properties"></span><strong id="Object properties">Object properties</strong>
+<table>
+<thead>
+<tr>
+<th>
+Property
+</th>
+<th>
+Data Type
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+sdcid
+</td>
+<td>
+String
+</td>
+<td>
+SDC ID
+</td>
+</tr>
+<tr>
+<td>
+keyid1
+</td>
+<td>
+String
+</td>
+<td>
+Sample ID
+</td>
+</tr>
+<tr>
+<td>
+keyid2
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+keyid3
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+paramlistid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List
+</td>
+</tr>
+<tr>
+<td>
+paramlistversionid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List version
+</td>
+</tr>
+<tr>
+<td>
+variantid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List variant
+</td>
+</tr>
+<tr>
+<td>
+dataset
+</td>
+<td>
+Integer
+</td>
+<td>
+Dataset number
+</td>
+</tr>
+<tr>
+<td>
+paramid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter ID
+</td>
+</tr>
+<tr>
+<td>
+paramtype
+</td>
+<td>
+String
+</td>
+<td>
+Parameter type
+</td>
+</tr>
+<tr>
+<td>
+replicateid
+</td>
+<td>
+Integer
+</td>
+<td>
+Replicate number
+</td>
+</tr>
+<tr>
+<td>
+limittypeid
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type ID
+</td>
+</tr>
+<tr>
+<td>
+operator
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type operator
+</td>
+</tr>
+<tr>
+<td>
+value1
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type value 1 (text)
+</td>
+</tr>
+<tr>
+<td>
+value2
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type value 2 (text)
+</td>
+</tr>
+<tr>
+<td>
+unitsid
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type unit
+</td>
+</tr>
+<tr>
+<td>
+statusflag
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type evaluation
+</td>
+</tr>
+<tr>
+<td>
+value1num
+</td>
+<td>
+BigDecimal
+</td>
+<td>
+Limit Type value 1 (numeric)
+</td>
+</tr>
+<tr>
+<td>
+value2num
+</td>
+<td>
+BigDecimal
+</td>
+<td>
+Limit Type value 2 (numeric)
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object from a sample"><h3 id="Get Limit object from a sample" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object from a sample">Get Limit object from a sample</a></h3></div>
+
+<p>
+Return a Limit object array from one or more sample ID. Values can be accessed using the object properties for each array position.
+</p>
+
+<p>
+Expression
+</p>
+<pre type=groovy><code>
+SGS.sampleLimitResults(datasourceid, sdidataitem, limittypeid, sampleid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object from a sample-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object from a sample-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object from a sample-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+(String) limittypeid: List of Limit Type ID, separated by <code>;</code>, or <code>'*'</code>
+
+<li>
+<em>(String)</em> sampleid: Sample IDs (separated by <code>;</code>) or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object from a sample-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Get the child samples and concatenate using ; as a separator
+def childSamples = SGS.concat(SGS.childSampleId('labvantage', ${primary:s_sampleid}, ""), ';');
+// Return the 'value1num' from the limit type 'RL'
+return SGS.getLimitResults('labvantage', SDIDataItem, childSamples, 'RL', 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0].value1num;
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Limit object from a sample-Object properties"></span><strong id="Object properties">Object properties</strong>
+<table>
+<thead>
+<tr>
+<th>
+Property
+</th>
+<th>
+Data Type
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+sdcid
+</td>
+<td>
+String
+</td>
+<td>
+SDC ID
+</td>
+</tr>
+<tr>
+<td>
+keyid1
+</td>
+<td>
+String
+</td>
+<td>
+Sample ID
+</td>
+</tr>
+<tr>
+<td>
+keyid2
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+keyid3
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+paramlistid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List
+</td>
+</tr>
+<tr>
+<td>
+paramlistversionid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List version
+</td>
+</tr>
+<tr>
+<td>
+variantid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List variant
+</td>
+</tr>
+<tr>
+<td>
+dataset
+</td>
+<td>
+Integer
+</td>
+<td>
+Dataset number
+</td>
+</tr>
+<tr>
+<td>
+paramid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter ID
+</td>
+</tr>
+<tr>
+<td>
+paramtype
+</td>
+<td>
+String
+</td>
+<td>
+Parameter type
+</td>
+</tr>
+<tr>
+<td>
+replicateid
+</td>
+<td>
+Integer
+</td>
+<td>
+Replicate number
+</td>
+</tr>
+<tr>
+<td>
+limittypeid
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type ID
+</td>
+</tr>
+<tr>
+<td>
+operator
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type operator
+</td>
+</tr>
+<tr>
+<td>
+value1
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type value 1 (text)
+</td>
+</tr>
+<tr>
+<td>
+value2
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type value 2 (text)
+</td>
+</tr>
+<tr>
+<td>
+unitsid
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type unit
+</td>
+</tr>
+<tr>
+<td>
+statusflag
+</td>
+<td>
+String
+</td>
+<td>
+Limit Type evaluation
+</td>
+</tr>
+<tr>
+<td>
+value1num
+</td>
+<td>
+BigDecimal
+</td>
+<td>
+Limit Type value 1 (numeric)
+</td>
+</tr>
+<tr>
+<td>
+value2num
+</td>
+<td>
+BigDecimal
+</td>
+<td>
+Limit Type value 2 (numeric)
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object"><h3 id="Get Attribute object" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object">Get Attribute object</a></h3></div>
+
+<p>
+Return an Attribute object array. Values can be accessed using the object properties for each array position.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.getAttributResults(datasourceid, sdidataitem, attributeid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid, sameWorkitem);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> attributeid: Attribute ID, or <code>'*'</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(Boolean)</em> sameWorkitem: <code>true</code> if the Parameter List/Parameter is in the same Work Item (Test Method), <code>false</code> if it's not in the same WI/TM or if the PL was manually added
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the numeric value for the Attribute 'Signal'
+return SGS.getAttributResults('labvantage', SDIDataItem, 'Signal', 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0].numericvalue;
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object-Object properties"></span><strong id="Object properties">Object properties</strong>
+<table>
+<thead>
+<tr>
+<th>
+Property
+</th>
+<th>
+Data Type
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+sdcid
+</td>
+<td>
+String
+</td>
+<td>
+SDC ID
+</td>
+</tr>
+<tr>
+<td>
+keyid1
+</td>
+<td>
+String
+</td>
+<td>
+Sample ID
+</td>
+</tr>
+<tr>
+<td>
+keyid2
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+keyid3
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+paramlistid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List
+</td>
+</tr>
+<tr>
+<td>
+paramlistversionid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List version
+</td>
+</tr>
+<tr>
+<td>
+variantid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List variant
+</td>
+</tr>
+<tr>
+<td>
+dataset
+</td>
+<td>
+Integer
+</td>
+<td>
+Dataset number
+</td>
+</tr>
+<tr>
+<td>
+paramid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter ID
+</td>
+</tr>
+<tr>
+<td>
+paramtype
+</td>
+<td>
+String
+</td>
+<td>
+Parameter type
+</td>
+</tr>
+<tr>
+<td>
+replicateid
+</td>
+<td>
+Integer
+</td>
+<td>
+Replicate number
+</td>
+</tr>
+<tr>
+<td>
+attributeid
+</td>
+<td>
+String
+</td>
+<td>
+Attribute ID
+</td>
+</tr>
+<tr>
+<td>
+datatype
+</td>
+<td>
+String
+</td>
+<td>
+Attribute data type
+</td>
+</tr>
+<tr>
+<td>
+textvalue
+</td>
+<td>
+String
+</td>
+<td>
+Attribute text value
+</td>
+</tr>
+<tr>
+<td>
+numericvalue
+</td>
+<td>
+BigDecimal
+</td>
+<td>
+Attribute numeric value
+</td>
+</tr>
+<tr>
+<td>
+datevalue
+</td>
+<td>
+Date
+</td>
+<td>
+Attribute date value
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+<div id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample"><h3 id="Get Attribute object from a sample" class="header"><a href="#GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample">Get Attribute object from a sample</a></h3></div>
+
+<p>
+Return an Attribute object array from one or more sample ID. Values can be accessed using the object properties for each array position.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.sampleAttributResults(datasourceid, sdidataitem, attributeid, paramlistid, paramlistversionid, variantid, dataset, paramid, paramtype, replicateid);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(String)</em> attributeid: Attribute ID, or <code>'*'</code>
+
+<li>
+<em>(String)</em> sampleid: Sample IDs (separated by <code>;</code>) or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> paramlistid: Parameter List ID, <code>${paramlistid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramlistversionid: Parameter List version, <code>${paramlistversionid}.toString()</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> variantid: Parameter List variant, <code>${variantid}</code>, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> dataset: Dataset number, <code>${dataset}.toString()</code>, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+<li>
+<em>(String)</em> paramid: Parameter ID, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> paramtype: Parameter type, <code>'*'</code> (all), or <code>'#'</code> (same)
+
+<li>
+<em>(String)</em> replicateid: Replicate number, <code>'*'</code> (all), <code>'#'</code> (same), or <code>'max'</code>
+
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the numeric value for the Attribute 'Signal' for the current sample
+return SGS.getAttributResults('labvantage', SDIDataItem, 'Signal', ${primary:s_sampleid}, 'Analysis', '*', '#', 'max', '#', 'Standard', 'max', true)[0].numericvalue;
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-Internal Sample Expressions-Get Attribute object from a sample-Object properties"></span><strong id="Object properties">Object properties</strong>
+<table>
+<thead>
+<tr>
+<th>
+Property
+</th>
+<th>
+Data Type
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+sdcid
+</td>
+<td>
+String
+</td>
+<td>
+SDC ID
+</td>
+</tr>
+<tr>
+<td>
+keyid1
+</td>
+<td>
+String
+</td>
+<td>
+Sample ID
+</td>
+</tr>
+<tr>
+<td>
+keyid2
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+keyid3
+</td>
+<td>
+String
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+paramlistid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List
+</td>
+</tr>
+<tr>
+<td>
+paramlistversionid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List version
+</td>
+</tr>
+<tr>
+<td>
+variantid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter List variant
+</td>
+</tr>
+<tr>
+<td>
+dataset
+</td>
+<td>
+Integer
+</td>
+<td>
+Dataset number
+</td>
+</tr>
+<tr>
+<td>
+paramid
+</td>
+<td>
+String
+</td>
+<td>
+Parameter ID
+</td>
+</tr>
+<tr>
+<td>
+paramtype
+</td>
+<td>
+String
+</td>
+<td>
+Parameter type
+</td>
+</tr>
+<tr>
+<td>
+replicateid
+</td>
+<td>
+Integer
+</td>
+<td>
+Replicate number
+</td>
+</tr>
+<tr>
+<td>
+attributeid
+</td>
+<td>
+String
+</td>
+<td>
+Attribute ID
+</td>
+</tr>
+<tr>
+<td>
+datatype
+</td>
+<td>
+String
+</td>
+<td>
+Attribute data type
+</td>
+</tr>
+<tr>
+<td>
+textvalue
+</td>
+<td>
+String
+</td>
+<td>
+Attribute text value
+</td>
+</tr>
+<tr>
+<td>
+numericvalue
+</td>
+<td>
+BigDecimal
+</td>
+<td>
+Attribute numeric value
+</td>
+</tr>
+<tr>
+<td>
+datevalue
+</td>
+<td>
+Date
+</td>
+<td>
+Attribute date value
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+<div id="GROOVY EXPRESSIONS-External Sample Expressions"><h2 id="External Sample Expressions" class="header"><a href="#GROOVY EXPRESSIONS-External Sample Expressions">External Sample Expressions</a></h2></div>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Note:"></span><strong id="Note:">Note:</strong> Samples with status "Cancelled" and hidden sampels are excluded from the results.
+</p>
+
+<div id="GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID"><h3 id="Get child sample ID" class="header"><a href="#GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID">Get child sample ID</a></h3></div>
+
+<p>
+Return an array with the child samples of the specified parent sample. Results can be filtered with SQL.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.childSampleId(datasourceid, sampleid, condition);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(String)</em> sampleid: Sample ID or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> condition: SQL query specifying the conditions to filter the child samples.
+
+<ul>
+<li>
+Enter text between double quotes (<code>"</code>)
+
+<li>
+If no condition is needed, enter empty quotes (<code>""</code>)
+
+<li>
+SQL alias:
+
+<ul>
+<li>
+Sample table: <code>s</code>
+
+<li>
+Child sample table: <code>sm</code>
+
+</ul>
+<li>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID-Note:"></span><strong id="Note:">Note:</strong> The expression <code>SGS.childPlanSampleId</code> uses the same arguments and returns the same data as <code>SGS.childSampleId</code>, but exposes the following tables/alias:
+
+<ul>
+<li>
+Child sample plan table: <code>csp</code>
+
+<li>
+Child sample plan item table: <code>cspi</code>
+
+</ul>
+</ul>
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get child sample ID-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Return the sample ID for the child sample with sample.samplesubtypeid = 'Air_Front'
+return SGS.childSampleId('labvantage', ${primary:s_sampleid}, "s.samplesubtypeid = 'Air_Front")[0];
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID"><h3 id="Get parent sample ID" class="header"><a href="#GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID">Get parent sample ID</a></h3></div>
+
+<p>
+Return an array with the parent sample of the specified child sample. Results can be filtered with SQL.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.parentSampleId(datasourceid, sampleid, condition);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(String)</em> sampleid: Sample ID or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> condition: SQL query specifying the conditions to filter the child samples.
+
+<ul>
+<li>
+Enter text between double quotes (<code>"</code>)
+
+<li>
+If no condition is needed, enter empty quotes (<code>""</code>)
+
+<li>
+SQL alias:
+
+<ul>
+<li>
+Sample table: <code>s</code>
+
+<li>
+Child sample table: <code>sm</code>
+
+</ul>
+<li>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID-Note:"></span><strong id="Note:">Note:</strong> The expression <code>SGS.parentPlanSampleId</code> uses the same arguments and returns the same data as <code>SGS.parentSampleId</code>, but exposes the following tables/alias:
+
+<ul>
+<li>
+Child sample plan table: <code>csp</code>
+
+<li>
+Child sample plan item table: <code>cspi</code>
+
+</ul>
+</ul>
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get parent sample ID-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Return the sample ID for the child sample with sample.samplesubtypeid = 'Air_Front'
+return SGS.parentSampleId('labvantage', ${primary:s_sampleid}, "s.samplesubtypeid = 'Air_Front");
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID"><h3 id="Get QC sample ID" class="header"><a href="#GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID">Get QC sample ID</a></h3></div>
+
+<p>
+Return an array with the QC sample ID (unknown excluded) with the specified conditions. Results can be filtered with SQL.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.qcSampleId(datasourceid, sdidataitem, linked, batchitemtype, condition);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(DataItemInfo)</em> sdidataitem: DataItemInfo object obtained from <code>SGS.getSDIDataitem</code> expression
+
+<li>
+<em>(Boolean)</em> linked: <code>true</code> return only QCs with linked sample results (i.e., MS, MSD, DUP etc.)
+
+<li>
+<em>(String)</em> batchitemtype: QC sample type, separated by <code>;</code>, or <code>*</code> (all)
+
+<li>
+<em>(String)</em> condition: SQL query specifying the conditions to filter the QC samples.
+
+<ul>
+<li>
+Enter text between double quotes (<code>"</code>)
+
+<li>
+if no condition is needed, enter empty quotes (<code>""</code>)
+
+<li>
+SQL alias:
+
+<ul>
+<li>
+Sample table: <code>s</code>
+
+<li>
+QC batch table: <code>qcb</code>
+
+<li>
+QC batch item table: <code>qcbi</code>
+
+<li>
+QC batch sample type table: <code>qcbst</code>
+
+</ul>
+</ul>
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Create DataItemInfo object
+def SDIDataItem = SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}, 'Appearance', 'Standard', 'max');
+// Return the QC samples of type MS and MSD
+return SGS.qcSampleId('labvantage', SDIDataItem, true, 'MS;MSD', "")[0];
+</code></pre>
+
+<div id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID by work item"><h3 id="Get QC sample ID by work item" class="header"><a href="#GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID by work item">Get QC sample ID by work item</a></h3></div>
+
+<p>
+Return an array with the QC sample ID (unknown excluded) with the expecified conditions. Results can be filtered with SQL.
+</p>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID by work item-Expression"></span><strong id="Expression">Expression</strong>
+</p>
+<pre type=groovy><code>
+SGS.qcSampleIdByWorkItem(datasourceid, sampleid, workitemid, workiteminstance, linked, batchitemtype, condition);
+</code></pre>
+
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID by work item-Arguments"></span><strong id="Arguments">Arguments</strong>
+</p>
+<ul>
+<li>
+<em>(String)</em> datasourceid: <code>'labvantage'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID by work item-EHS"></span><strong id="EHS">EHS</strong>) or <code>'pbluelv8'</code> (<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID by work item-LVP"></span><strong id="LVP">LVP</strong>)
+
+<li>
+<em>(String)</em> sampleid: Sample ID or <code>${primary:s_sampleid}</code>
+
+<li>
+<em>(String)</em> workitemid: Test method ID or <code>*</code> (all)
+
+<li>
+<em>(String)</em> workiteminstance: Test method instance, <code>${#;#;#;#|sourceworkiteminstance}.toString()</code> or <code>*</code> (all)
+
+<li>
+<em>(Boolean)</em> linked: <code>true</code> return only QCs with linked sample results (i.e., MS, MSD, DUP etc.)
+
+<li>
+<em>(String)</em> batchitemtype: QC sample type, separated by <code>;</code>, or <code>*</code> (all)
+
+<li>
+<em>(String)</em> condition: SQL query specifying the conditions to filter the QC samples.
+
+<ul>
+<li>
+Enter text between double quotes (<code>"</code>)
+
+<li>
+if no condition is needed, enter empty quotes (<code>""</code>)
+
+<li>
+SQL alias:
+
+<ul>
+<li>
+Sample table: <code>s</code>
+
+<li>
+QC batch table: <code>qcb</code>
+
+<li>
+QC batch item table: <code>qcbi</code>
+
+<li>
+QC batch sample type table: <code>qcbst</code>
+
+</ul>
+</ul>
+</ul>
+<p>
+<span id="GROOVY EXPRESSIONS-External Sample Expressions-Get QC sample ID by work item-Example"></span><strong id="Example">Example</strong>
+</p>
+<pre type=groovy><code>
+// Return the QC samples of type MS and MSD for the current instance of the Work Item EPA8260_W
+return SGS.qcSampleIdByWorkItem('labvantage', ${primary:s_sampleid}, 'EPA8260_W', ${#;#;#;#|sourceworkiteminstance}, true, 'MS;MSD', "")[0];
+</code></pre>
+
+	</body>
+</html>

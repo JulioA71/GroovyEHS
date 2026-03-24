@@ -1,0 +1,37 @@
+/* TM: APHA9230_C_W */
+/* PL: APHA9230_C_En_Calculation_W */
+/* Parameter: ColonyConfirmedCount */
+if([TotalColoniesVerification;Final Value]=0,0,([APHA9230_C_ME_Filtration_W;*;*;max|AtypicalColonies;Final Value;max]+[APHA9230_C_ME_Filtration_W;*;*;max|DarkRedColonies;Final Value;max])*[ColonyConfirmedCount;Final Value]/[TotalColoniesVerification;Final Value])
+
+
+def result=0;
+if (${TotalColoniesVerification;Final Value}==0)
+{
+  result=0
+}
+else
+{
+  
+  result=(${APHA9230_C_ME_Filtration_W;*;*;max|AtypicalColonies;Final Value;max}+${APHA9230_C_ME_Filtration_W;*;*;max|DarkRedColonies;Final Value;max})*${VerifiedColonies;Final Value}/${TotalColoniesVerification;Final Value}
+}
+return result
+
+
+/* TM: APHA9230_C_W */
+/* PL: APHA9230_C_En_Calculation_W */
+/* Parameter: Enterococcus */
+if([APHA9230_C_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max]=0,0,([VerifiedColonies;Final Value]/([APHA9230_C_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max])*100)) 
+
+
+def result=0;
+if (${APHA9230_C_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max}==0)
+{
+  result=0
+}
+else
+{
+  
+  result=(${ColonyConfirmedCount;Final Value}/${APHA9230_C_ME_Filtration_W;*;*;max|SampleVolumeFiltered;Final Value;max})*100
+}
+return result
+

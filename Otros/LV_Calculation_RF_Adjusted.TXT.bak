@@ -1,0 +1,19 @@
+RF
+==
+${7440-70-2;Standard}==0?0:${7440-70-2;Standard;max;Signal}/${7440-70-2;Standard}
+${CA_KCL;Standard}==0?0:${CA_KCL;Standard;max;Signal}/${CA_KCL;Standard}
+
+
+ADJUSTED
+========
+[7440-70-2;Standard;max;ParamLimit_1:SDL]*[Multiplier;Final Value]*[DF;Final Value]/[#;#;#;#|SOP_Multiplier]
+[CA_KCL;Standard;max;ParamLimit_1:SDL]*[Multiplier;Final Value]*[DF;Final Value]/[#;#;#;#|SOP_Multiplier]
+
+
+
+
+[DF;Final Value] * [7440-70-2;Standard] / (12.5 * [SampleWeight;Final Value])
+
+([DF;Final Value] * [Multiplier;Final Value] * [S_KCL;Standard]) / (12.5 * [SampleWeight;Final Value])
+
+

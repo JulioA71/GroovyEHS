@@ -1,0 +1,543 @@
+/* TM=VDI3877 */
+/* PL=VDI3877_Analysis_X400 */
+/* Parameter=Sum_FibreIsolee */
+def result=0;
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Sum_FibreIsolee','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#','#', 'Chrysotile_FibreIsolee', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', 'Chrysotile_FibreIsolee', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#','#', 'Amphibole_FibreIsolee', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', 'Amphibole_FibreIsolee', 'Final Value', 'max', true)[0]
+}
+return result
+
+
+
+def result=0;
+def nParam=0;
+def nAdjRL=0;
+/* SumDichloropropane = [78-87-5;Final Value]+[142-28-9;Final Value]+[594-20-7;Final Value] */
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'SumDichloropropane','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#','#', '78-87-5', 'Final Value', 'max', true))
+{
+  nParam=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', '78-87-5', 'Final Value', 'max', true)[0]
+  nAdjRL=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', '78-87-5', 'Adjusted RL', 'max', true)[0]
+  if (nParam < nAdjRL)
+  	{
+  	result=result+0
+  	}
+  else
+  	{
+  	result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', '78-87-5', 'Final Value', 'max', true)[0]
+  	}
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#','#', '142-28-9', 'Final Value', 'max', true))
+{
+  nParam=0
+  nAdjRL=0
+  nParam=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', '142-28-9', 'Final Value', 'max', true)[0]
+  nAdjRL=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', '142-28-9', 'Adjusted RL', 'max', true)[0]
+  if (nParam < nAdjRL)
+  	{
+  	result=result+0
+  	}
+  else
+  	{
+  	result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#','#', '142-28-9', 'Final Value', 'max', true)[0]
+  	}
+}
+
+
+
+
+/*	Parameter=Sum_Amat	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Sum_Amat','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_Amat', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_Amat', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_Amat', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_Amat', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_Amat', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_Amat', 'Final Value', 'max', true)[0]
+}
+return result
+
+
+/*	Parameter=Sum_Faisceau	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Sum_Faisceau','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_Faisceau', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_Faisceau', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_Faisceau', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_Faisceau', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_Faisceau', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_Faisceau', 'Final Value', 'max', true)[0]
+}
+return result
+
+
+/*	Parameter=Sum_Matrice	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Sum_Matrice','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_Matrice', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_Matrice', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_Matrice', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_Matrice', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_Matrice', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_Matrice', 'Final Value', 'max', true)[0]
+}
+return result
+
+
+/*	Parameter=Sum_18	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Sum_18','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_18', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_18', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_18', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_18', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_18', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_18', 'Final Value', 'max', true)[0]
+}
+return result
+
+
+
+/*	TM=VDI3877 */
+/*	PL=VDI3877_Analysis_X400	*/
+/*	Parameter=Weighted_FibreIsolee	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Weighted_FibreIsolee','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_FibreIsolee', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_FibreIsolee', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_FibreIsolee', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_FibreIsolee', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_FibreIsolee', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_FibreIsolee', 'Final Value', 'max', true)[0]
+}
+if (result>0)
+{
+  result=result*1
+}
+return result
+
+
+/*	Parameter=Weighted_Amat	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Weighted_Amat','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_Amat', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_Amat', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_Amat', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_Amat', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_Amat', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_Amat', 'Final Value', 'max', true)[0]
+}
+if (result>0)
+{
+  result=result*5
+}
+return result
+
+
+/*	Parameter=Weighted_Faisceau	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Weighted_Faisceau','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_Faisceau', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_Faisceau', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_Faisceau', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_Faisceau', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_Faisceau', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_Faisceau', 'Final Value', 'max', true)[0]
+}
+if (result>0)
+{
+  result=result*5
+}
+return result
+
+
+/*	Parameter=Weighted_Matrice	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Weighted_Matrice','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_Matrice', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_Matrice', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_Matrice', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_Matrice', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_Matrice', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_Matrice', 'Final Value', 'max', true)[0]
+}
+if (result>0)
+{
+  result=result*5
+}
+return result
+
+
+/*	Parameter=Weighted_18	*/
+def result=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Weighted_18','Final Value', 'max');
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Autre_18', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Autre_18', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Chrysotile_18', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Chrysotile_18', 'Final Value', 'max', true)[0]
+}
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Amphibole_18', 'Final Value', 'max', true))
+{
+  result=result+SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Amphibole_18', 'Final Value', 'max', true)[0]
+}
+if (result>0)
+{
+  result=result*10
+}
+return result
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_AnalysisX1300_MD
+	Parameter=Champs
+	Default Value=13
+*/
+def result=0;
+if (${VDI3877_AnalysisX400_MD;*;*;max|Champs;Final Value;max}<25)
+{
+  result=0
+}
+else
+{
+  result=13
+}
+return result
+
+
+if( [b], [t], [f] )
+
+    ([this]<25, "0", string ([this]))
+    
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=Results
+*/
+
+def resulttext="<<<<>>>>";
+def result1=0;
+def result2=0;
+def sdidataitem1=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3877_AnalysisX400_MD','*',${variantid}, ""+${dataset}, 'Champs','*','max');
+def sdidataitem2=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3877_AnalysisX1300_MD','*',${variantid}, ""+${dataset}, 'Champs','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem1,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Autre_18;Amphibole_FibreIsolee;Amphibole_Amat;Amphibole_Faisceau;Amphibole_Matrice;Amphibole_18;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Sum_18;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice;Weighted_18');
+def paramList=paramList1
+def bResult=true;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumChrysotile=SGS.getNumericResults('labvantage',sdidataitem1, sdidataitem1.paramlistid,sdidataitem1.paramlistversionid,sdidataitem1.variantid, ""+sdidataitem1.dataset, paramid, 'Final Value', 'max', false)
+	if(SumChrysotile.length>0)
+	{
+		result1=result1+SumChrysotile[0];
+	}
+}
+def paramList2=SGS.getParamsByParamType(sdidataitem2,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Amphibole_FibreIsolee;Amphibole_Amat;Amphibole_Faisceau;Amphibole_Matrice;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice');
+paramList=paramList2
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumChrysotile=SGS.getNumericResults('labvantage',sdidataitem2, sdidataitem2.paramlistid,sdidataitem2.paramlistversionid,sdidataitem2.variantid, ""+sdidataitem2.dataset, paramid, 'Final Value', 'max', false)
+	if(SumChrysotile.length>0)
+	{
+		result1=result1+SumChrysotile[0];
+	}
+}
+def paramList3=SGS.getParamsByParamType(sdidataitem1,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Autre_18;Chrysotile_FibreIsolee;Chrysotile_Amat;Chrysotile_Faisceau;Chrysotile_Matrice;Chrysotile_18;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Sum_18;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice;Weighted_18');
+paramList=paramList3
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumAmphibole=SGS.getNumericResults('labvantage',sdidataitem1, sdidataitem1.paramlistid,sdidataitem1.paramlistversionid,sdidataitem1.variantid, ""+sdidataitem1.dataset, paramid, 'Final Value', 'max', false)
+	if(SumAmphibole.length>0)
+	{
+		result2=result2+SumAmphibole[0];
+	}
+}
+def paramList4=SGS.getParamsByParamType(sdidataitem2,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Chrysotile_FibreIsolee;Chrysotile_Amat;Chrysotile_Faisceau;Chrysotile_Matrice;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice');
+paramList=paramList4
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumAmphibole=SGS.getNumericResults('labvantage',sdidataitem2, sdidataitem2.paramlistid,sdidataitem2.paramlistversionid,sdidataitem2.variantid, ""+sdidataitem2.dataset, paramid, 'Final Value', 'max', false)
+	if(SumAmphibole.length>0)
+	{
+		result2=result2+SumAmphibole[0];
+	}
+}
+if (result1>0 || result2>0)
+	{
+	resulttext="Amiante décelé"
+	}
+else
+	{
+	resulttext="Amiante non-décelé"
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result1);
+return (!bResult?'':resulttext)
+
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=TypeAsbestos
+*/
+def resulttext="none";
+def result1=0;
+def result2=0;
+def sdidataitem1=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3877_AnalysisX400_MD','*',${variantid}, ""+${dataset}, 'Champs','*','max');
+def sdidataitem2=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3877_AnalysisX1300_MD','*',${variantid}, ""+${dataset}, 'Champs','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem1,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Autre_18;Amphibole_FibreIsolee;Amphibole_Amat;Amphibole_Faisceau;Amphibole_Matrice;Amphibole_18;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Sum_18;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice;Weighted_18');
+def paramList=paramList1
+def bResult=true;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumChrysotile=SGS.getNumericResults('labvantage',sdidataitem1, sdidataitem1.paramlistid,sdidataitem1.paramlistversionid,sdidataitem1.variantid, ""+sdidataitem1.dataset, paramid, 'Final Value', 'max', false)
+	if(SumChrysotile.length>0)
+	{
+		result1=result1+SumChrysotile[0];
+	}
+}
+def paramList2=SGS.getParamsByParamType(sdidataitem2,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Amphibole_FibreIsolee;Amphibole_Amat;Amphibole_Faisceau;Amphibole_Matrice;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice');
+paramList=paramList2
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumChrysotile=SGS.getNumericResults('labvantage',sdidataitem2, sdidataitem2.paramlistid,sdidataitem2.paramlistversionid,sdidataitem2.variantid, ""+sdidataitem2.dataset, paramid, 'Final Value', 'max', false)
+	if(SumChrysotile.length>0)
+	{
+		result1=result1+SumChrysotile[0];
+	}
+}
+def paramList3=SGS.getParamsByParamType(sdidataitem1,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Autre_18;Chrysotile_FibreIsolee;Chrysotile_Amat;Chrysotile_Faisceau;Chrysotile_Matrice;Chrysotile_18;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Sum_18;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice;Weighted_18');
+paramList=paramList3
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumAmphibole=SGS.getNumericResults('labvantage',sdidataitem1, sdidataitem1.paramlistid,sdidataitem1.paramlistversionid,sdidataitem1.variantid, ""+sdidataitem1.dataset, paramid, 'Final Value', 'max', false)
+	if(SumAmphibole.length>0)
+	{
+		result2=result2+SumAmphibole[0];
+	}
+}
+def paramList4=SGS.getParamsByParamType(sdidataitem2,'Final Value','Champs;Autre_FibreIsolee;Autre_Amat;Autre_Faisceau;Autre_Matrice;Chrysotile_FibreIsolee;Chrysotile_Amat;Chrysotile_Faisceau;Chrysotile_Matrice;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice');
+paramList=paramList4
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def SumAmphibole=SGS.getNumericResults('labvantage',sdidataitem2, sdidataitem2.paramlistid,sdidataitem2.paramlistversionid,sdidataitem2.variantid, ""+sdidataitem2.dataset, paramid, 'Final Value', 'max', false)
+	if(SumAmphibole.length>0)
+	{
+		result2=result2+SumAmphibole[0];
+	}
+}
+if (result1>0 && result2>0)
+	{
+	resulttext="Chrysotile, Amphibole"
+	}
+else
+if (result1>0)
+	{
+	resulttext="Chrysotile"
+	}
+else
+if (result2>0)
+	{
+	resulttext="Amphibole"
+	}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result1);
+return (!bResult?'':resulttext)
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=ConcSum
+*/
+[VDI3877_AnalysisX400_MD;*;*;max|Sum_FibreIsolee;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Sum_Amat;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Sum_Faisceau;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Sum_Matrice;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Sum_18;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Sum_FibreIsolee;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Sum_Amat;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Sum_Faisceau;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Sum_Matrice;Final Value;max]
+
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=ConcWeighted
+*/
+[VDI3877_AnalysisX400_MD;*;*;max|Weighted_FibreIsolee;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Weighted_Amat;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Weighted_Faisceau;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Weighted_Matrice;Final Value;max]+[VDI3877_AnalysisX400_MD;*;*;max|Weighted_18;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Weighted_FibreIsolee;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Weighted_Amat;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Weighted_Faisceau;Final Value;max]+[VDI3877_AnalysisX1300_MD;*;*;max|Weighted_Matrice;Final Value;max]
+
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=StructureObservee
+*/
+
+def sdidataitem1=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3877_AnalysisX400_MD','*',${variantid}, ""+${dataset}, 'Champs','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem1,'Final Value','Champs;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Sum_18;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice;Weighted_18');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList1){
+	def st1=SGS.getNumericResults('labvantage',sdidataitem1, sdidataitem1.paramlistid,sdidataitem1.paramlistversionid,sdidataitem1.variantid, ""+sdidataitem1.dataset, paramid, 'Final Value', 'max', false)
+	if(st1.length>0)
+	{
+		bResult=true;
+		result=result+st1[0];
+	}
+}
+def sdidataitem2=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3877_AnalysisX1300_MD','*',${variantid}, ""+${dataset}, 'Champs','*','max');
+def paramList2=SGS.getParamsByParamType(sdidataitem2,'Final Value','Champs;Sum_FibreIsolee;Sum_Amat;Sum_Faisceau;Sum_Matrice;Weighted_FibreIsolee;Weighted_Amat;Weighted_Faisceau;Weighted_Matrice');
+paramList=paramList2
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList2){
+	def st2=SGS.getNumericResults('labvantage',sdidataitem2, sdidataitem2.paramlistid,sdidataitem2.paramlistversionid,sdidataitem2.variantid, ""+sdidataitem2.dataset, paramid, 'Final Value', 'max', false)
+	if(st2.length>0)
+	{
+		bResult=true;
+		result=result+st2[0];
+	}
+}
+if ( !bResult )
+	{
+	result=0
+	}
+bResult=true;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=ConcPrelim
+*/
+((${VDI3877_AnalysisX400_MD;*;*;max|Champs;Final Value;max}*0.89)+(${VDI3877_AnalysisX1300_MD;*;*;max|Champs;Final Value;max}*0.08))*Math.pow(10,-2)
+
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=Concentration
+*/
+[ConcWeighted;Final Value]/[ConcPrelim;Final Value]
+
+
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=ClasseISO
+*/
+def result="";
+def conc=0;
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'ClasseISO','Final Value', 'max') 
+if (SGS.checkResults('labvantage',sdidataitem, '#','#','#', '#', 'Concentration', 'Final Value', 'max', true))
+{
+  conc=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Concentration', 'Final Value', 'max', true)[0]
+  if (conc==0)
+  	{
+  	result="Classe 0"
+	}
+  else
+  if (conc>=1 && conc<=100)
+    {
+  	result="Classe 1"
+	}
+  else
+  if (conc>=101 && conc<=500)
+    {
+    result="Classe 2"
+	}
+  else
+  if (conc>500)
+    {
+    result="Classe 3"
+	}
+  else
+    {
+    result="none"
+	}
+}
+return result
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=DetectionLimit
+	4/[AreaAnalyzed;Final Value]
+*/
+4/[AreaAnalyzed;Final Value]
+
+
+
+/*
+	TM=VDI3877_M
+	PL=VDI3877_Calculation_MD
+	Parameter=Resume^3
+	Value = (Concatenate the folowing string & parameter's value : "LD = " + DetectionLimit + " ST = " + StructureObservee + "C = " + Concentration + "FA/cm2")
+	result=result+typeAsb[0]+", ";
+	
+	result=Math.round(${DetectionLimit;Final Value}) Integer
+	  result=Math.round(${DetectionLimit;Final Value})
+*/
+
+def result="";
+if (${DetectionLimit;Final Value}>0 && ${StructureObservee;Final Value}>0 && ${Concentration;Final Value}>0)
+{  
+  result="LD=" + Math.round(${DetectionLimit;Final Value}) + " ST=" + Math.round(${StructureObservee;Final Value}) + " C=" + Math.round(${Concentration;Final Value}) + " FA/cm2";
+}
+else
+{
+  result="0"
+}
+return result

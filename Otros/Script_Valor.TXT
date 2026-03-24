@@ -1,0 +1,16 @@
+[03:28] Zhu, Valor (Shanghai)
+
+It's workflow issue.
+In LV no way to update calculation rule automatically.
+Only manually modify
+I can fix this one in UAT global, test global.
+But still with some NIOSH method already validated by local.
+I don't know which is the good process to update these things.
+The problem is the workflow from global to local only overall.
+But missed the real example of details case.
+e.g. if global update calculation rule, how is the fast way by local to update them.
+As in LV only param not in local but in global can be import to local
+if already existed. It not support just overwrite the calculation rule but not update other things.
+The local had no chance to do that, if they want to update. 1. they should one by one to copy calculation rule from global to local. 2. they have to remove all existed ones, and import from global , but they have to set up 'rounding decimal', 'reportable', 'alias id' etc..
+It's OK if one PL just with few parameters, but like a big ones, I think it's very hard to update.
+

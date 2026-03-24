@@ -1,0 +1,13 @@
+/* TM=NIOSH1550_A */
+/* PL=NIOSH1550_A_child */
+/* Parameter=VPH_C5_C9 */
+/* Type=Absolute Value */
+[VPH_C5_C9;Standard]*[SampleVolume;Final Value]*[DF;Final Value]/1000
+
+
+
+/* Type=Standard */
+([EPH_C9_C36;WF]+[EPH_C9_C36;WB]-avg([AQC:MB;All|NIOSH1550_A;*;#;max|EPH_C9_C36;WF;*])-avg([AQC:MB;All|NIOSH1550_A;*;#;max|EPH_C9_C36;WB;*]))*1000/[AirVolume;Final Value]
+
+/* Type=Final Value */
+if([EPH_C9_C36;WB] > [EPH_C9_C36;WF]/10, "Possible loss sample",string(([EPH_C9_C36;WF]+[EPH_C9_C36;WB]-avg([AQC:MB;All|NIOSH1550_A;*;#;max|EPH_C9_C36;WF;*])-avg([AQC:MB;All|NIOSH1550_A;*;#;max|EPH_C9_C36;WB;*]))*1000/[AirVolume;Final Value]))

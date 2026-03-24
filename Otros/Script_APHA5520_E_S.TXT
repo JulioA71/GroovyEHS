@@ -1,0 +1,47 @@
+/* TM=APHA5520_E_S */
+/* PL=APHA5520_E_S */
+/* Parameter=DryWeightFraction */
+/* 1/[Dry_Weight_Prep;*;*;max|MoistureFactor;Final Value;max] */
+
+switch(${primary:qcsampletype})
+{
+case 'Unknown': 
+   def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Multiplier','Final Value', 'max') 
+/*Dry_Weight_Prep;*;*;#|MoistureFactor;Final Value;max*/
+   def moisturefactor=SGS.getNumericResults('labvantage',sdidataitem, 'Dry_Weight_Prep','*','*', 'max', 'MoistureFactor', 'Final Value', 'max', false)
+	if( moisturefactor.length>0)
+		return 1/moisturefactor[0]
+	else
+		return 1
+break;
+case ['Dup']: 
+	def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Multiplier','Final Value', 'max') 
+/*Dry_Weight_Prep;*;*;#|MoistureFactor;Final Value;max*/
+	def unknownsamples=SGS.getUnknownSampleLink(sdidataitem)
+	def moisturefactor=SGS.sampleNumericResults('labvantage',sdidataitem,unknownsamples[0], 'Dry_Weight_Prep','*','*', 'max', 'MoistureFactor', 'Final Value', 'max')
+	if( moisturefactor.length>0)
+		return 1/moisturefactor[0]
+	else
+		return 1
+break;
+default:
+return 1
+break;
+}
+
+
+/* TM=APHA5520_E_S */
+/* PL=APHA5520_E_S */
+/* Parameter=OG */
+/* Type=Standard */
+/* ([DrySampleWeight;Final Value]* 100) / ([SampleWeight;Final Value]*[DryWeightFraction;Final Value]) */
+def result=0;
+if (${Dry_Weight_Prep;*;*;max|DrySampleWeight;Final Value;max}==0 || ${Dry_Weight_Prep;*;*;max|SampleWeight;Final Value;max}==0 || ${DryWeightFraction;Final Value}==0)
+{
+	result=0
+}
+else
+{	
+	result=(${Dry_Weight_Prep;*;*;max|DrySampleWeight;Final Value;max}*100)/(${Dry_Weight_Prep;*;*;max|SampleWeight;Final Value;max}*${DryWeightFraction;Final Value})
+}
+return result

@@ -1,0 +1,132 @@
+/* TM=SNI19_7117_18_Cor_A */
+/* PL=SNI19_7117_18_Cor_ASE */
+/* Parameter=O2Cor */
+/*
+    Description:    Transfer the multiplier parameter from the sampling PL
+    Created by:     Marino Orsi
+    Created:        2023-10-04
+    Modification log (add below)
+    Date            Name                            Description
+    yyyy-MM-dd      xxxxx                           xxxxx
+*/
+
+// Variable declaration - modify the parameters below with the source (where the data comes from) and destination (where the data goes to)
+def SourcePL = 'SGSIH_O2Cor_ASE';
+def SourceP = 'O2Cor';
+def SourcePType = 'Final Value';
+def DestinationP = 'O2Cor'
+def DestinationPType = 'Final Value'
+
+// Generic variable to hold the calculated data
+def CalcResult = 0;
+
+// Variable to hold data related to the SDI
+def SampleType = ${primary:qcsampletype};
+def SDIDataItem= SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}.toString(), DestinationP, DestinationPType, 'max');
+
+if (SampleType == "Unknown")
+{
+    def SourceValue = SGS.getNumericResults('labvantage',SDIDataItem, SourcePL,'*','*', 'max', SourceP, SourcePType, 'max', false);
+    CalcResult = SourceValue[0];
+}
+else if (SampleType == "Dup")
+{
+    def LinkedUnkID = SGS.getUnknownSampleLink(SDIDataItem)
+    def SourceValue = SGS.sampleNumericResults('labvantage', SDIDataItem, LinkedUnkID[0], SourcePL, '*', '*', 'max', SourceP, SourcePType, 'max')
+    CalcResult = SourceValue[0];
+}
+else
+{
+    CalcResult = 1;
+}
+return CalcResult;
+
+
+
+/* TM=SNI19_7117_18_Cor_A */
+/* PL=SNI19_7117_18_Cor_ASE */
+/* Parameter=Multiplier */
+/*
+    Description:    Transfer the multiplier parameter from the sampling PL
+    Created by:     Marino Orsi
+    Created:        2023-10-04
+    Modification log (add below)
+    Date            Name                            Description
+    yyyy-MM-dd      xxxxx                           xxxxx
+*/
+
+// Variable declaration - modify the parameters below with the source (where the data comes from) and destination (where the data goes to)
+def SourcePL = 'Sampling_ASE';
+def SourceP = 'Multiplier';
+def SourcePType = 'Final Value';
+def DestinationP = 'Multiplier'
+def DestinationPType = 'Final Value'
+
+// Generic variable to hold the calculated data
+def CalcResult = 0;
+
+// Variable to hold data related to the SDI
+def SampleType = ${primary:qcsampletype};
+def SDIDataItem= SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}.toString(), DestinationP, DestinationPType, 'max');
+
+// Variable to hold parameter values
+def O2Cor = ${O2Cor;Final Value};
+
+if (SampleType == "Unknown")
+{
+    def SourceValue = SGS.getNumericResults('labvantage',SDIDataItem, SourcePL,'*','*', 'max', SourceP, SourcePType, 'max', false);
+    CalcResult = SourceValue[0];
+}
+else if (SampleType == "Dup")
+{
+    def LinkedUnkID = SGS.getUnknownSampleLink(SDIDataItem)
+    def SourceValue = SGS.sampleNumericResults('labvantage', SDIDataItem, LinkedUnkID[0], SourcePL, '*', '*', 'max', SourceP, SourcePType, 'max')
+    CalcResult = SourceValue[0];
+}
+else
+{
+    CalcResult = 1;
+}
+return 1 / CalcResult * O2Cor;
+
+
+
+
+
+
+/* TM=SNI19_7117_18_Cor_A */
+/* PL=SNI19_7117_18_Cor_ASE */
+/* Parameter=7446-09-5 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'SNI19_7117_18_Cor_ASE', '*', '*', 'max', '7446-09-5','Final Value', 'max');
+/* Get Values from Parameters */
+def nDF=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'DF', 'Final Value', 'max', true)[0];
+def nUnkStandard=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', '7446-09-5', 'Standard', 'max', true)[0];
+def nSampleVolume=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'SampleVolume', 'Final Value', 'max', true)[0];
+def nMultiplier=SGS.getNumericResults('labvantage', sdidataitem,, '#','#','#', '#', 'Multiplier', 'Final Value', 'max', true)[0];
+/* Get MB Values from AQC */
+def nMBStandard=${AQC:MB;All|SNI19_7117_18_Cor_ASE;*;#;max|7446-09-5;Standard;*};
+if (nMBStandard>0)
+{
+  nMBStandard=nMBStandard
+}
+else
+{
+  nMBStandard=0
+}
+/* Calculations */
+def result=0;
+switch(${primary:qcsampletype})
+{
+case ['Unknown']:
+  result=(64/96) * (nUnkStandard-nMBStandard) * nDF * (250/nSampleVolume) * nMultiplier
+  break;
+case ['MB']:
+  result=0
+  break;
+default:
+  result=0
+  break;
+}
+return result
+
+

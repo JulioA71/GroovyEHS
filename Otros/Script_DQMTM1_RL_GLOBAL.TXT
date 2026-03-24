@@ -1,0 +1,36 @@
+/* TM=DQMTM1 */
+/* PL=DQMPL1 */
+/* Parameter=DQMSum1 */
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'DQMPL1','*',${variantid}, ""+${dataset}, 'DQMSum1','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','DF;Multiplier;DQMParam4;DQMParam5;DQMParam6;DQMSum1;DQMSum2;DQMAvg1;DQMAvg2');
+def paramList=paramList1
+def result=0;
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList){
+	def Sum1=SGS.getNumericResults('labvantage',sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	def rl=SGS.getLimitResults('labvantage', sdidataitem, 'RL', paramid,'*','#', 'max', '#', 'Final Value', 'max', true)[0].value1num
+	if(Sum1.length>0 && rl.length>0)
+	{
+		bResult=true;
+		if(Sum1[0]>rl[0])
+		{
+			result=result+Sum1[0];
+		}			
+	}
+}
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+result);
+return (!bResult?'':result)
+
+
+SGS.getLimitResults(datasourceid,sdidataitem,limittypeid,paramlistid,paramlistversionid,variantid, dataset, paramid, paramtype, replicateid, sameWorkitem) 
+
+
+Example 1 : 
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Result','Standard', 'max')
+return SGS.getLimitResults('labvantage', sdidataitem, 'LR', 'Analysis','*','#', 'max', '#', 'Standard', 'max', true)[0].value1num
+
+
+Example 2 :  
+def sdidataitem = SGS.getSDIDataitem('labvantage',${primary:s_sampleid},${paramlistid},""+${paramlistversionid},${variantid}, ""+${dataset}, 'Result','Standard', 'max')
+return SGS.getLimitResults('labvantage', sdidataitem, 'LR; RL or LOR', 'Analysis','*','#', 'max', '#', 'Standard', 'max', true)[0].value1num

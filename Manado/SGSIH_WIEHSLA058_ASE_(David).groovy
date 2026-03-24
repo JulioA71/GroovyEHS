@@ -1,0 +1,39 @@
+/* 
+	Description: Calculate the Multiplier:Final Value for SGSIH_WIEHSLA058_ASE 
+	Created by: Marino Orsi 
+	Created: 2023-12-20 Modification log (add below) 
+	Date Name Description 2024-04-11 Marino Orsi 
+	Get the value from the PL on the same TM yyyy-MM-dd xxxxx xxxxx 
+*/ 
+// Variable declaration - modify the parameters below with the source (where the data comes from) and destination (where the data goes to) 
+def SourcePL = 'Sampling_ASE'; 
+def ParamID = 'Multiplier'; 
+def ParamType = 'Final Value'; 
+
+// Generic variable to hold the calculated data 
+def CalcResult = 0; 
+def dilutionResults=${DF;Final Value}; 
+
+// Variable to hold data related to the SDI 
+def SampleType = ${primary:qcsampletype}; 
+def SDIDataItem= SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}.toString(), ParamID, ParamType, 'max'); 
+
+// Execute code only if there's value on DF parameter if (SGS.checkResults('labvantage', SDIDataItem, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, 'max', 'DF', 'Final Value', 'max', true)) 
+{ 
+	if (SampleType == "Unknown") 
+	{ 
+		def SourceValue = SGS.getNumericResults('labvantage',SDIDataItem, SourcePL,'*','*', 'max', ParamID, ParamType, 'max', true); 
+		CalcResult = SourceValue[0]; 
+	} 
+	else if (SampleType == "Dup") 
+	{ 
+		def LinkedUnkID = SGS.getUnknownSampleLink(SDIDataItem) 
+		def SourceValue = SGS.sampleNumericResults('labvantage', SDIDataItem, LinkedUnkID[0], '#', '#', '#', 'max', 'Multiplier', 'Final Value', 'max') 
+		CalcResult = 1 / SourceValue[0]; 
+	} 
+	else 
+	{ 
+		CalcResult = 1; 
+	} 
+	return 1 / CalcResult 
+}

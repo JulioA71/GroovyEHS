@@ -1,0 +1,131 @@
+/* TM=VDI3866_M */
+/* PL=VDI3866_Analyse_MD */
+/* Parameter=Results */
+
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3866_Analyse_MD','*',${variantid}, ""+${dataset}, 'Analysable','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','Analyste;Analysable;Results^1;TypeAsbestos^2;CommentsSampPrivate');
+def paramList=paramList1
+def result="";
+def resulttxt="Amiante non-d�cel�";
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList1){
+	def typeAsb=SGS.getTextResults('labvantage', sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(typeAsb.length>0)
+	{
+		bResult=true;
+		result=result+typeAsb[0]+", ";
+	}
+}
+if (${Analysable;Final Value}!="Yes") 
+	{
+	resulttxt="non-analysable"
+	}
+else
+if ( bResult )
+	{
+    resulttxt="Amiante d�cel�"
+	} 
+else
+	{
+	resulttxt="Amiante non-d�cel�"
+	}
+bResult=true;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+resulttxt);
+return (!bResult?'':resulttxt)
+
+
+
+
+
+/* TM=VDI3866_M */
+/* PL=VDI3866_Analyse_MD */
+/* Parameter=TypeAsbestos */
+
+def sdidataitem=SGS.getSDIDataitem('labvantage',${primary:s_sampleid},'VDI3866_Analyse_MD','*',${variantid}, ""+${dataset}, 'TypeAsbestos^2','*','max');
+def paramList1=SGS.getParamsByParamType(sdidataitem,'Final Value','Analyste;Analysable;Results^1;TypeAsbestos^2;CommentsSampPrivate');
+def paramList=paramList1
+def result="";
+def resulttxt="";
+def bResult=false;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Nb of params : "+paramList.size());
+for(paramid in paramList1){
+	def typeAsb=SGS.getTextResults('labvantage', sdidataitem, sdidataitem.paramlistid,sdidataitem.paramlistversionid,sdidataitem.variantid, ""+sdidataitem.dataset, paramid, 'Final Value', 'max', false)
+	if(typeAsb.length>0)
+	{
+		bResult=true;
+		result=result+typeAsb[0]+", ";
+	}
+}
+if (${Analysable;Final Value}!="Yes") 
+	{
+	resulttxt=""
+	}
+else
+if ( bResult )
+	{
+    resulttxt=result.substring(0, result.length()-2)
+	} 
+else
+	{
+	resulttxt=""
+	}	
+bResult=true;
+sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+resulttxt);
+return (!bResult?'':resulttxt)
+
+
+
+==================================================================
+/*
+name = 'Foo Bar Moo'
+println(name)                // Foo Bar Moo
+
+fname = name.substring(0, 3)
+println(fname)               // Foo
+
+mname = name.substring(4, 7)
+println(mname)               // Bar
+ 
+lname = name.substring(name.length()-3)
+println(lname)               // Moo
+*/
+==================================================================
+
+
+SQL QUERY
+=========
+select 
+   pl.variantid, pl.paramlistid, pl.paramlistversionid, pl.paramlistdesc, pl.s_paramlisttype,
+   pl.securitydepartment,
+   case when pl.versionstatus='P' then 'Provisional' 
+		when pl.versionstatus='C' then 'Current' 
+		when PL.versionstatus='A' then 'Active' 
+		when PL.versionstatus='E' then 'Expired'   
+	end versionstatus,
+	pl.s_instrumenttype,
+	pli.paramid, p.paramdesc, pli.aliasid, pli.paramtype, pli.usersequence, pli.datatypes, pli.displayformat, pli.displayunits, pli.calcrule, pli.reportflag
+     
+   from paramlist pl
+	inner join paramlistitem pli on
+		pli.variantid=pl.variantid
+		and pli.paramlistid=pl.paramlistid
+		and pli.paramlistversionid=pl.paramlistversionid
+		--AND pli.paramid in ('ChloroBenzene')
+		--AND pli.paramid in ('108-90-7','541-73-1','106-46-7','95-50-1','120-82-1','87-61-6','TotalChloroBenzene')
+		AND pli.paramtype in ('Final Value')
+	inner join param p on
+		p.paramid=pli.paramid
+		--and p.paramdesc like '%HEXACHLOROBENZENE%'
+		--and p.paramid like '%total%'
+		--AND pli.calcrule like '%getNumericResults%'
+   where
+	pl.variantid='global'
+	AND pl.paramlistid='VDI3866_Analyse_MD' 	
+   --pl.modifiableflag <> 'Y' --or pl.s_cancellableflag <> 'N'
+   --and pl.paramlistversionid = 1
+   AND pl.paramlistversionid = (select max(CAST(paramlistversionid AS INT)) from paramlist
+	   where variantid=pl.variantid and paramlistid=pl.paramlistid)
+   order by
+   pl.variantid, pl.paramlistid, pl.paramlistversionid, pli.usersequence
+

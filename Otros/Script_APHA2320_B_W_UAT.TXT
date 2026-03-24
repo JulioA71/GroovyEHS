@@ -1,0 +1,31 @@
+/* UAT LOCAL */
+/* TM=APHA2320_B_W */
+/* PL=APHA2320_B_W */
+/* Parameter=CarbonateAlkalinity */
+
+def result=0;
+if (${PhenolphthaleinAlkalinity;Standard}==0)
+{
+  result=${TotalAlkalinity;Standard}
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==${TotalAlkalinity;Standard})
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}<(0.5*${TotalAlkalinity;Standard}))
+{
+  result=${TotalAlkalinity;Standard}-(2*${PhenolphthaleinAlkalinity;Standard})
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}==(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+else
+if (${PhenolphthaleinAlkalinity;Standard}>(0.5*${TotalAlkalinity;Standard}))
+{
+  result=0
+}
+return result
