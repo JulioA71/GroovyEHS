@@ -1,8 +1,21 @@
+// Variable declaration - modify the parameters below with the source (where the data comes from) and destination (where the data goes to)
+def SourceParamID = 'WindSpeed';
+def SourcePType = 'Final Value';
+String ParamID = ${#;#;#;paramid}.toString();	    // define the parameter for the calculation
+String ParamType = ${#;#;#;paramtype}.toString(); 	// define the parameter type
+def SampleType = ${primary:qcsampletype};		    // define the sample type
+
 // Generic variable to hold the calculated data
 def CalcResult = 0;
-def TextResult = "";
+def TextResult = '';
 def bstatus = false;
-def ParamDisplayF = ${DQM_TextFormat;*;*;max|WindSpeed;Final Value;#;displayformat};
+
+// Variable to hold data related to the SDI
+def SDIDataItem= SGS.getSDIDataitem('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}.toString(), ParamID, ParamType, 'max');
+
+// Obtain the maximum number of replicates
+def ParamDisplayF=SGS.getDisplayFormat('labvantage', ${primary:s_sampleid}, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, ${dataset}.toString(), SourceParamID);
+
 double ParamValue = ${DQM_TextFormat;*;*;max|DQMParam1;Final Value;#};
 
 switch(ParamDisplayF)

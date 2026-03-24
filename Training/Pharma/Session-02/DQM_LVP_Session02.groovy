@@ -23,6 +23,7 @@ if (SGS.checkResults('pbluelv8', SDIDataItem, ${paramlistid}, ${paramlistversion
 }
 
 
+
 /*
     Description:    DQM Training session 02
     Created by:     DQM team
@@ -53,7 +54,7 @@ def SDIDataItem = SGS.getSDIDataitem('pbluelv8', ${primary:s_sampleid}, ${paraml
 if (SGS.checkResults('pbluelv8', SDIDataItem, ${paramlistid}, ${paramlistversionid}.toString(), ${variantid}, 'max', 'AnalystName', 'DataEntry', 'max', true))
 {
     // Get an array with parameter value from the PL005710 PL
-    DataEntryBlank1 = SGS.getNumericResults('pbluelv8', SDIDataItem, FieldPL, '*', '*', 'max', 'Blank1', 'DataEntry', '*', false);
+    DataEntryBlank1 = SGS.getNumericResults('pbluelv8', SDIDataItem, 'PL005710', '*', '*', 'max', 'Blank1', 'DataEntry', '*', false);
 	DataEntryBlank2 = SGS.getNumericResults('pbluelv8', SDIDataItem, FieldPL, '*', '*', 'max', 'Blank2', 'DataEntry', '*', false);
     DataEntryBlank3 = SGS.getNumericResults('pbluelv8', SDIDataItem, FieldPL, '*', '*', 'max', 'Blank3', 'DataEntry', '*', false);
 	if (DataEntryBlank1.length > 0) { numBlank1 = DataEntryBlank1[0]; }
@@ -61,9 +62,8 @@ if (SGS.checkResults('pbluelv8', SDIDataItem, ${paramlistid}, ${paramlistversion
     if (DataEntryBlank3.length > 0) { numBlank3 = DataEntryBlank3[0]; }
     
     CalcResult = (numBlank1 + numBlank2 + numBlank3);
-    if (CalcResult > 0) return CalcResult
+    return CalcResult 
 }
-
 
 
 /*

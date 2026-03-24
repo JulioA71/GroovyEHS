@@ -10,3 +10,29 @@ if (difference){
 }
 
 return Math.abs((SGS.getNumericResults('pbluelv8', SDIDataItem, 'PL005602', '*', '*', 'max', 'NCSWeight_Ignition2', 'DataEntry', 'max', true)[0] - ${PL005602;*;BEBRU|Container_Weight;DataEntry;max}) / ${PL005602;*;BEBRU|SampleWeight;SystemCalculation;max} *100)
+
+
+
+def result="";
+if (${TolueneDifference;SystemCalculation} <=0.0001 && ${TMPDifference;SystemCalculation} <=0.0005) {
+   bstatus=true}
+  else {
+  bstatus=false
+}
+if (bstatus) {result="Pass"}
+else
+result="Fail"
+return result
+
+
+
+if (Math.abs(${TolueneDifference;SystemCalculation}) <= 0.0001)
+    {
+        if (Math.abs(${TMPDifference;SystemCalculation} <=0.0005)
+            {
+	        return "OK";
+            }
+        else {return "NOK";}
+} else {
+	return "NOK";
+}

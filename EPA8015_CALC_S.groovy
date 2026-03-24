@@ -61,41 +61,6 @@ sapphire.util.Logger.logDebug("TEST_CALCULATION","Results : "+avgNum);
 return (!bResult?'':avgNum)
 
 
-avg([EPA8015_GCFID_S;*;*;max|124-18-5;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|1120-21-4;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|112-40-3;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-50-5;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-59-4;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-62-9;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|544-76-3;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-78-7;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|1921-70-6;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|593-45-3;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|638-36-8;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-92-5;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|112-95-8;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-94-7;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-97-0;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|638-67-5;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|646-31-1;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|629-99-2;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|630-01-3;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|593-49-7;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|630-02-4;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|630-03-5;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|638-68-6;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|630-04-6;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|544-85-4;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|630-05-7;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|14167-59-0;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|630-07-9;Final Value;max],
-[EPA8015_GCFID_S;*;*;max|630-06-8;Final Value;max],
-
-[EPA8015_GCMS_S;*;*;max|124-18-5;Final Value;max],
-[EPA8015_GCMS_S;*;*;max|112-40-3;Final Value;max],
-[EPA8015_GCMS_S;*;*;max|90-12-0;Final Value;max],
-[EPA8015_GCMS_S;*;*;max|91-20-3;Final Value;max])
-
 
 
 

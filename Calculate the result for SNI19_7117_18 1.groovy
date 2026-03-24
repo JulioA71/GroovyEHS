@@ -9,9 +9,9 @@
 
 // Variable declaration - modify below as needed
 def QCType = 'MB';
-def QCParam = '10028-15-6';
+def QCParam = '7446-09-5';
 def QCPType = 'Standard';
-def DestinationP = '10028-15-6';
+def DestinationP = '7446-09-5';
 def DestinationPType = 'Final Value';
 
 // Generic variable to hold the calculated data
